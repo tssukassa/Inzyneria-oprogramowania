@@ -1,6 +1,9 @@
 ﻿using Backend_IO.Models;
 using Backend_IO.Services;
 using Microsoft.AspNetCore.Mvc;
+using Backend_IO.DTO;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Backend_IO.Controllers
 {
@@ -17,9 +20,9 @@ namespace Backend_IO.Controllers
 
         // Регистрация
         [HttpPost("register")]
-        public IActionResult Register([FromBody] User user)
+        public IActionResult Register(RegisterDto dto)
         {
-            var success = _authService.Register(user.Username, user.PasswordHash, user.Role);
+            var success = _authService.Register(dto);
             if (!success)
             {
                 return BadRequest("Пользователь с таким логином уже существует.");
@@ -30,15 +33,16 @@ namespace Backend_IO.Controllers
 
         // Логин
         [HttpPost("login")]
-        public IActionResult Login([FromBody] User user)
+        public IActionResult Login(LoginDto dto)
         {
-            var success = _authService.Login(user.Username, user.PasswordHash);
-            if (!success)
+            var user = _authService.GetUser(dto.Username); // новый метод, см. ниже
+            if (user == null || !_authService.VerifyPassword(user.PasswordHash, dto.Password))
             {
                 return Unauthorized("Неверный логин или пароль.");
             }
 
-            return Ok("Логин успешен.");
+            var token = _authService.GenerateJwtToken(user);
+            return Ok(new { token });
         }
     }
 }

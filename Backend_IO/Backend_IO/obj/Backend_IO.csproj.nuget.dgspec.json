@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\INZENERIA_OPRAGRAMOWANIA\\Backend_IO\\Backend_IO\\Backend_IO.csproj": {}
+    "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj": {}
   },
   "projects": {
-    "C:\\INZENERIA_OPRAGRAMOWANIA\\Backend_IO\\Backend_IO\\Backend_IO.csproj": {
+    "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\INZENERIA_OPRAGRAMOWANIA\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
+        "projectUniqueName": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
         "projectName": "Backend_IO",
-        "projectPath": "C:\\INZENERIA_OPRAGRAMOWANIA\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
+        "projectPath": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
         "packagesPath": "C:\\Users\\Dmytro\\.nuget\\packages\\",
-        "outputPath": "C:\\INZENERIA_OPRAGRAMOWANIA\\Backend_IO\\Backend_IO\\obj\\",
+        "outputPath": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +51,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.3.1, )"
@@ -68,6 +72,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             }
           },
           "imports": [
