@@ -116,6 +116,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BookingController",
+    "Method": "UpdateFlightBookingsStatus",
+    "RelativePath": "api/Booking/update-flight-bookings-status/{flightId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "flightId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "newStatus",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Backend_IO.Controllers.FlightController",
     "Method": "CreateFlight",
     "RelativePath": "api/Flight/create",

@@ -87,25 +87,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-/*
-{
-  "username": "usualboy",
-  "password": "qwerty"
-}
-
-{
-  "username": "workerman",
-  "password": "qwerty"
-}
-
-{
-  "username": "coolgirl",
-  "password": "qwerty"
-}
-
-{
-  "username": "godworker",
-  "password": "qwerty"
-}
-*/

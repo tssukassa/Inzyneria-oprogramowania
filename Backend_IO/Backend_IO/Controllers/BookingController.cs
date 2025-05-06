@@ -183,6 +183,29 @@ public class BookingController : ControllerBase
         return Ok("All bookings for the flight have been cancelled.");
     }
 
+    [Authorize(Roles = "Employee,Partner")]
+    [HttpPost("update-flight-bookings-status/{flightId}")]
+    public IActionResult UpdateFlightBookingsStatus(int flightId, [FromBody] string newStatus)
+    {
+        if (string.IsNullOrWhiteSpace(newStatus))
+            return BadRequest("Status is required.");
+
+        var bookings = _context.Bookings
+            .Where(b => b.FlightId == flightId)
+            .ToList();
+
+        if (!bookings.Any())
+            return NotFound("No bookings found for this flight.");
+
+        foreach (var booking in bookings)
+        {
+            booking.Status = newStatus;
+        }
+
+        _context.SaveChanges();
+
+        return Ok($"All bookings for flight ID {flightId} updated to status '{newStatus}'.");
+    }
 
 }
 
