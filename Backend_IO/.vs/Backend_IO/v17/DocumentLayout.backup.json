@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Inzyneria-oprogramowania\\Backend_IO\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,16 +15,16 @@
       "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,14 +43,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Booking.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Booking.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Models\\Booking.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Booking.cs",
-              "RelativeToolTip": "Backend_IO\\Models\\Booking.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAbAAAAAAAAAA==",
+              "Title": "PartnerController.cs",
+              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\PartnerController.cs",
+              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\PartnerController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwCMAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T15:00:12.021Z"
+              "WhenOpened": "2025-05-10T06:50:03.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T06:50:01.047Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -56,44 +74,46 @@
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\FlightController.cs",
               "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\FlightController.cs",
               "RelativeToolTip": "Backend_IO\\Controllers\\FlightController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwEIAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwHkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T14:59:16.068Z"
+              "WhenOpened": "2025-05-06T14:59:16.068Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "BookingController.cs",
               "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\BookingController.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs*",
-              "RelativeToolTip": "Backend_IO\\Controllers\\BookingController.cs*",
-              "ViewState": "AgIAAKwAAAAAAAAAAAAIwL8AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\BookingController.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAwwF4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-06T12:08:06.365Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
               "RelativeToolTip": "Backend_IO\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABKAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAqwEIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T10:36:47.329Z"
+              "WhenOpened": "2025-05-06T10:36:47.329Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Program.cs",
               "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
               "RelativeToolTip": "Backend_IO\\Program.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAABkAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T15:24:22.862Z",
               "EditorCaption": ""

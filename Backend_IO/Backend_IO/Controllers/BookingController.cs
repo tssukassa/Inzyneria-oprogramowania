@@ -25,12 +25,11 @@ public class BookingController : ControllerBase
     public IActionResult CreateBooking([FromBody] BookingDto bookingDto)
     {
         // Получаем userId из токена
-        var userId = User.FindFirst("userId")?.Value;
+        int userId = int.Parse(User.FindFirst("userId")?.Value);
+        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        if (string.IsNullOrEmpty(userId))
-        {
-            return Unauthorized("User ID not found in token.");
-        }
+        if (user == null)
+            return Unauthorized("User no exists.");
 
         // Проверяем, существует ли рейс
         var flight = _context.Flights.SingleOrDefault(f => f.Id == bookingDto.FlightId);
@@ -42,7 +41,7 @@ public class BookingController : ControllerBase
         // Создаём новый заказ
         var booking = new Booking
         {
-            UserId = int.Parse(userId),  // Преобразуем строку в int
+            UserId = userId,  // Преобразуем строку в int
             FlightId = bookingDto.FlightId,
             BookingDate = DateTime.Now,  // Текущая дата
             Status = "Pending"  // Начальный статус
@@ -55,29 +54,22 @@ public class BookingController : ControllerBase
         return Ok("Заказ успешно создан.");
     }
 
-    [HttpGet("my-bookings")]
+    [HttpGet("my-bookings")] 
     [Authorize]
     public IActionResult GetBookings()
     {
-        var username = User.Identity?.Name;
-        var role = User.FindFirst(ClaimTypes.Role)?.Value;
+        var userId = int.Parse(User.FindFirst("userId")?.Value);
+        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(role))
-            return Unauthorized();
+        if (user == null)
+            return Unauthorized("No exists.");
 
         IQueryable<Booking> bookings;
-
-        // Остальные получают только свои бронирования
-        var user = _context.Users.FirstOrDefault(u => u.Username == username);
-        if (user == null)
-            return Unauthorized();
 
         bookings = _context.Bookings
             .Where(b => b.UserId == user.Id)
             .Include(b => b.Flight);
         
-
-        // Проецируем в DTO или возвращаем как есть (если DTO пока нет)
         var result = bookings.Select(b => new
         {
             b.Id,
@@ -94,46 +86,64 @@ public class BookingController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("all-bookings")]
     [Authorize(Roles = "Employee")]
-    public IActionResult AllBookings()
+    [HttpGet("search-bookings")]
+    public IActionResult SearchBookings(
+     int? userId,
+     int? flightId,
+     DateTime? date,
+     string? status)
     {
-        var username = User.Identity?.Name;
-        var role = User.FindFirst(ClaimTypes.Role)?.Value;
+        var userId_adm = int.Parse(User.FindFirst("userId")?.Value);
+        var user_adm = _context.Users.FirstOrDefault(u => u.Id == userId_adm);
 
-        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(role))
-            return Unauthorized();
+        if (user_adm == null)
+            return Unauthorized("Employee no exists.");
 
-        IQueryable<Booking> bookings;
-
-        // Работник получает все бронирования
-        bookings = _context.Bookings
+        var query = _context.Bookings
+            .Include(b => b.User)
             .Include(b => b.Flight)
-            .Include(b => b.User);
+            .AsQueryable();
 
-        // Проецируем в DTO или возвращаем как есть (если DTO пока нет)
-        var result = bookings.Select(b => new
+        if (userId.HasValue)
+            query = query.Where(b => b.UserId == userId.Value);
+
+        if (flightId.HasValue)
+            query = query.Where(b => b.FlightId == flightId.Value);
+
+        if (date.HasValue)
+            query = query.Where(b => b.BookingDate.Date == date.Value.Date);
+
+        if (!string.IsNullOrWhiteSpace(status))
+            query = query.Where(b => b.Status == status);
+
+        var results = query.Select(b => new
         {
             b.Id,
             b.Status,
             b.BookingDate,
+            User = b.User.Username,
             FlightNumber = b.Flight.FlightNumber,
             From = b.Flight.Origin,
             To = b.Flight.Destination,
             Departure = b.Flight.DepartureTime,
             Arrival = b.Flight.ArrivalTime,
-            Price = b.Flight.Price,
-            User = b.User.Username
+            Price = b.Flight.Price
         }).ToList();
 
-        return Ok(result);
+        return Ok(results);
     }
+
 
     [Authorize]
     [HttpPost("cancel-booking/{bookingId}")]
     public IActionResult CancelBookingByUser(int bookingId)
     {
         int userId = int.Parse(User.FindFirst("userId")?.Value);
+        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+        if (user == null)
+            return Unauthorized("User no exists.");
 
         var booking = _context.Bookings
             .FirstOrDefault(b => b.Id == bookingId && b.UserId == userId);
@@ -151,6 +161,12 @@ public class BookingController : ControllerBase
     [HttpPost("cancel-booking-admin/{bookingId}")]
     public IActionResult CancelBookingByEmployee(int bookingId)
     {
+        int userId = int.Parse(User.FindFirst("userId")?.Value);
+        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+        if (user == null)
+            return Unauthorized("User no exists.");
+
         var booking = _context.Bookings.FirstOrDefault(b => b.Id == bookingId);
 
         if (booking == null)
@@ -166,6 +182,12 @@ public class BookingController : ControllerBase
     [HttpPost("cancel-flight-bookings/{flightId}")]
     public IActionResult CancelAllBookingsByFlight(int flightId)
     {
+        int userId = int.Parse(User.FindFirst("userId")?.Value);
+        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+        if (user == null)
+            return Unauthorized("User no exists.");
+
         var bookings = _context.Bookings
             .Where(b => b.FlightId == flightId && b.Status != "Cancelled")
             .ToList();
@@ -187,6 +209,12 @@ public class BookingController : ControllerBase
     [HttpPost("update-flight-bookings-status/{flightId}")]
     public IActionResult UpdateFlightBookingsStatus(int flightId, [FromBody] string newStatus)
     {
+        int userId = int.Parse(User.FindFirst("userId")?.Value);
+        var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+        if (user == null)
+            return Unauthorized("User no exists.");
+
         if (string.IsNullOrWhiteSpace(newStatus))
             return BadRequest("Status is required.");
 

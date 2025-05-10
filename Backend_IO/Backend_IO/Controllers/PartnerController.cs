@@ -22,6 +22,12 @@ namespace Backend_IO.Controllers
         [HttpGet("booking-stats")]
         public IActionResult GetBookingStats()
         {
+            int userId = int.Parse(User.FindFirst("userId")?.Value);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+                return Unauthorized("User no exists.");
+
             // Получаем все индексы рейсов
             var flightIds = _context.Flights
                 .Select(f => f.Id)

@@ -33,16 +33,6 @@
   },
   {
     "ContainingType": "BookingController",
-    "Method": "AllBookings",
-    "RelativePath": "api/Booking/all-bookings",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "BookingController",
     "Method": "CancelBookingByEmployee",
     "RelativePath": "api/Booking/cancel-booking-admin/{bookingId}",
     "HttpMethod": "POST",
@@ -117,6 +107,37 @@
   },
   {
     "ContainingType": "BookingController",
+    "Method": "SearchBookings",
+    "RelativePath": "api/Booking/search-bookings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "flightId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "date",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookingController",
     "Method": "UpdateFlightBookingsStatus",
     "RelativePath": "api/Booking/update-flight-bookings-status/{flightId}",
     "HttpMethod": "POST",
@@ -169,19 +190,50 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Backend_IO.Controllers.PartnerController",
-    "Method": "GetBookingStats",
-    "RelativePath": "api/Partner/booking-stats",
+    "ContainingType": "Backend_IO.Controllers.FlightController",
+    "Method": "SearchFlights",
+    "RelativePath": "api/Flight/search-flights",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "flightNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "origin",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "destination",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "departureDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "arrivalDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "price",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Backend_IO.Controllers.UserController",
-    "Method": "AllFlights",
-    "RelativePath": "api/User/all-flights",
+    "ContainingType": "Backend_IO.Controllers.PartnerController",
+    "Method": "GetBookingStats",
+    "RelativePath": "api/Partner/booking-stats",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -236,15 +288,15 @@
   },
   {
     "ContainingType": "Backend_IO.Controllers.UserController",
-    "Method": "GetUserInfo",
-    "RelativePath": "api/User/user/{id}",
+    "Method": "GetUserInfoByUsername",
+    "RelativePath": "api/User/user/by-username/{username}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "username",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

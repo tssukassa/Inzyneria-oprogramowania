@@ -21,14 +21,10 @@ namespace Backend_IO.Controllers
 
         // [GET] Информация о текущем пользователе
         [Authorize]
-        [HttpGet("me")]//<--------------------------------------------------------------------------***
+        [HttpGet("me")]
         public IActionResult GetMyInfo()
         {
-            var userIdClaim = User.FindFirst("userId")?.Value;
-            if (string.IsNullOrEmpty(userIdClaim))
-                return Unauthorized("Token invalid or missing.");
-
-            int userId = int.Parse(userIdClaim);
+            var userId = int.Parse(User.FindFirst("userId")?.Value);
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
             if (user == null)
@@ -46,13 +42,19 @@ namespace Backend_IO.Controllers
         }
 
 
-        // [GET] Информация о любом пользователе (только для Employee)
         [Authorize(Roles = "Employee")]
-        [HttpGet("user/{id}")]
-        public IActionResult GetUserInfo(int id)
+        [HttpGet("user/by-username/{username}")]
+        public IActionResult GetUserInfoByUsername(string username)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
-            if (user == null) return NotFound("Пользователь не найден.");
+            var userId = int.Parse(User.FindFirst("userId")?.Value);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+                return Unauthorized("Employee no exists.");
+
+            user = _context.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null)
+                return NotFound("Пользователь не найден.");
 
             return Ok(new
             {
@@ -71,6 +73,9 @@ namespace Backend_IO.Controllers
         {
             int userId = int.Parse(User.FindFirst("userId")?.Value);
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+                return Unauthorized("Employee no exists.");
 
             var activeBookings = _context.Bookings
             .Where(b => b.UserId == userId && b.Status != "Completed" && b.Status != "Cancelled")
@@ -94,7 +99,13 @@ namespace Backend_IO.Controllers
         [HttpDelete("delete-account/{userId}")]
         public IActionResult DeleteAccountById(int userId)
         {
-            var user = _context.Users.Find(userId);
+            var userId_adm = int.Parse(User.FindFirst("userId")?.Value);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId_adm);
+
+            if (user == null)
+                return Unauthorized("Employee no exists.");
+
+            user = _context.Users.Find(userId);
 
             if (user == null)
             {
@@ -122,6 +133,12 @@ namespace Backend_IO.Controllers
         [Authorize(Roles = "Employee")]
         public IActionResult AllUsers()
         {
+            var userId = int.Parse(User.FindFirst("userId")?.Value);
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+                return Unauthorized("Employee no exists.");
+
             var users = _context.Users
                 .Select(u => new
                 {
@@ -136,26 +153,6 @@ namespace Backend_IO.Controllers
                 .ToList();
 
             return Ok(users);
-        }
-
-        [HttpGet("all-flights")]
-        public IActionResult AllFlights()
-        {
-         
-            var flights = _context.Flights
-                .Select(flight => new
-                {
-                    flight.Id,
-                    flight.FlightNumber,
-                    flight.Origin,
-                    flight.Destination,
-                    flight.DepartureTime,
-                    flight.ArrivalTime,
-                    flight.Price,
-                })
-                .ToList();
-
-            return Ok(flights);
         }
     }
 }
