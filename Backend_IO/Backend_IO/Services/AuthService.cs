@@ -19,18 +19,15 @@ namespace Backend_IO.Services
         {
             _context = context;
         }
-        // Хеширование пароля
 
         public string HashPassword(string password)
         {
-            // Генерация соли
             byte[] salt = new byte[16];
             using (var rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(salt);
             }
 
-            // Хеширование пароля с солью
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
                 salt: salt,
@@ -38,11 +35,9 @@ namespace Backend_IO.Services
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8));
 
-            // Сохранение соли и хеша пароля (соль хранится в открытом виде для проверки)
             return $"{Convert.ToBase64String(salt)}.{hashed}";
         }
 
-        // Проверка пароля
         public bool VerifyPassword(string hashedPassword, string password)
         {
             var parts = hashedPassword.Split('.');
@@ -59,24 +54,21 @@ namespace Backend_IO.Services
             return hash == hashToCheck;
         }
 
-        // Регистрация пользователя
         public bool Register(RegisterDto dto)
         {
-            // Проверяем, есть ли уже такой пользователь
             var existingUser = _context.Users.SingleOrDefault(u => u.Username == dto.Username);
             if (existingUser != null)
             {
-                return false; // Пользователь с таким логином уже существует
+                return false; 
             }
 
             string role = dto.RoleKey switch
             {
                 "worker123" => "Employee",
                 "partner321" => "Partner",
-                _ => "Client" // если ключ не введён или неправильный
+                _ => "Client" 
             };
 
-            // Хешируем пароль
             string hashedPassword = HashPassword(dto.Password);
 
             var user = new User
@@ -90,23 +82,20 @@ namespace Backend_IO.Services
                 DateOfBirth = dto.DateOfBirth
             };
 
-            // Добавляем пользователя в базу данных
             _context.Users.Add(user);
             _context.SaveChanges();
 
             return true;
         }
 
-        // Логин пользователя
         public bool Login(string username, string password)
         {
             var user = _context.Users.SingleOrDefault(u => u.Username == username);
             if (user == null)
             {
-                return false; // Пользователь не найден
+                return false; 
             }
 
-            // Проверяем, совпадает ли хешированный пароль
             return VerifyPassword(user.PasswordHash, password);
         }
 
@@ -122,7 +111,7 @@ namespace Backend_IO.Services
                 {
             new Claim(ClaimTypes.Name, user.Username),
             new Claim(ClaimTypes.Role, user.Role),
-            new Claim("userId", user.Id.ToString()) // Добавляем ID пользователя в токен
+            new Claim("userId", user.Id.ToString()) 
         }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 Issuer = jwtSettings["Issuer"],

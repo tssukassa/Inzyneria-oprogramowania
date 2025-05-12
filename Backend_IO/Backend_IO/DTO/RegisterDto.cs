@@ -16,7 +16,7 @@ namespace Backend_IO.DTO
         [Required]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
-        public string? Email { get; set; } // Опционально
+        public string? Email { get; set; } 
     }
 
 }

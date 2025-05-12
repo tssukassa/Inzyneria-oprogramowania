@@ -28,7 +28,7 @@ namespace Backend_IO.Controllers
                 return Unauthorized("User no exists.");
 
             if (dto == null)
-                return BadRequest("Некорректные данные.");
+                return BadRequest("Invalid data.");
 
             var flight = new Flight
             {
@@ -43,7 +43,7 @@ namespace Backend_IO.Controllers
             _context.Flights.Add(flight);
             _context.SaveChanges();
 
-            return Ok("Рейс успешно добавлен.");
+            return Ok("Flight added successfully.");
         }
 
         [Authorize(Roles = "Partner,Employee")]

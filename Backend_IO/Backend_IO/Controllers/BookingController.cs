@@ -20,38 +20,34 @@ public class BookingController : ControllerBase
         _authService = authService;
     }
 
-    [Authorize] // Только для авторизованных пользователей
+    [Authorize]
     [HttpPost("create")]
     public IActionResult CreateBooking([FromBody] BookingDto bookingDto)
     {
-        // Получаем userId из токена
         int userId = int.Parse(User.FindFirst("userId")?.Value);
         var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
         if (user == null)
             return Unauthorized("User no exists.");
 
-        // Проверяем, существует ли рейс
         var flight = _context.Flights.SingleOrDefault(f => f.Id == bookingDto.FlightId);
         if (flight == null)
         {
-            return BadRequest("Рейс с таким ID не найден.");
+            return BadRequest("Flight with this ID was not found.");
         }
 
-        // Создаём новый заказ
         var booking = new Booking
         {
-            UserId = userId,  // Преобразуем строку в int
+            UserId = userId,
             FlightId = bookingDto.FlightId,
-            BookingDate = DateTime.Now,  // Текущая дата
-            Status = "Pending"  // Начальный статус
+            BookingDate = DateTime.Now,  
+            Status = "Pending" 
         };
 
-        // Добавляем заказ в базу данных
         _context.Bookings.Add(booking);
         _context.SaveChanges();
 
-        return Ok("Заказ успешно создан.");
+        return Ok("The order has been successfully created.");
     }
 
     [HttpGet("my-bookings")] 
@@ -62,7 +58,7 @@ public class BookingController : ControllerBase
         var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
         if (user == null)
-            return Unauthorized("No exists.");
+            return Unauthorized("User no exists.");
 
         IQueryable<Booking> bookings;
 

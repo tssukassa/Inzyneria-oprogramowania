@@ -5,24 +5,24 @@ namespace Backend_IO.Models
 {
     public class Flight
     {
-        public int Id { get; set; } // Идентификатор перелета (PK)
+        public int Id { get; set; } 
 
         [Required]
-        public string Origin { get; set; } // Город отправления
+        public string Origin { get; set; } 
 
         [Required]
-        public string Destination { get; set; } // Город назначения
+        public string Destination { get; set; } 
 
         [Required]
-        public DateTime DepartureTime { get; set; } // Время вылета
+        public DateTime DepartureTime { get; set; } 
 
         [Required]
-        public DateTime ArrivalTime { get; set; } // Время прибытия
+        public DateTime ArrivalTime { get; set; } 
 
         [Required]
-        public decimal Price { get; set; } // Стоимость билета
+        public decimal Price { get; set; } 
 
         [Required]
-        public string FlightNumber { get; set; } // Номер рейса
+        public string FlightNumber { get; set; } 
     }
 }

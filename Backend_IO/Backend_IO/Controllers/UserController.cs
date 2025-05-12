@@ -19,7 +19,6 @@ namespace Backend_IO.Controllers
             _context = context;
         }
 
-        // [GET] Информация о текущем пользователе
         [Authorize]
         [HttpGet("me")]
         public IActionResult GetMyInfo()
@@ -54,7 +53,7 @@ namespace Backend_IO.Controllers
 
             user = _context.Users.FirstOrDefault(u => u.Username == username);
             if (user == null)
-                return NotFound("Пользователь не найден.");
+                return NotFound("User not found.");
 
             return Ok(new
             {
@@ -112,7 +111,6 @@ namespace Backend_IO.Controllers
                 return NotFound("User not found.");
             }
 
-            // проверка на логин в текущее время
 
             var activeBookings = _context.Bookings
             .Where(b => b.UserId == userId && b.Status != "Completed" && b.Status != "Cancelled")

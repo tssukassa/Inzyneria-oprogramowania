@@ -5,29 +5,29 @@ namespace Backend_IO.Models
 
     public class User
     {
-        public int Id { get; set; } // Идентификатор пользователя
+        public int Id { get; set; }
 
         [Required]
-        public string Username { get; set; } // Логин пользователя
+        public string Username { get; set; }
 
         [Required]
-        public string PasswordHash { get; set; } // Хэш пароля пользователя
+        public string PasswordHash { get; set; } 
 
         [Required]
-        public string Role { get; set; } // Роль пользователя (например, Client или Employee)
+        public string Role { get; set; } 
 
         [Required]
-        public string FirstName { get; set; }       // Имя (необязательно)
+        public string FirstName { get; set; }     
 
         [Required]
-        public string LastName { get; set; }        // Фамилия (необязательно)
+        public string LastName { get; set; }        
 
         [EmailAddress]
-        public string? Email { get; set; }           // Email (необязательно)
+        public string? Email { get; set; }          
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }   // Дата рождения (необязательно)
+        public DateTime DateOfBirth { get; set; }   
     }
 }
 

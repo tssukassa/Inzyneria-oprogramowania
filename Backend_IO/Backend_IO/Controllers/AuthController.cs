@@ -18,27 +18,25 @@ namespace Backend_IO.Controllers
             _authService = authService;
         }
 
-        // Регистрация
         [HttpPost("register")]
         public IActionResult Register(RegisterDto dto)
         {
             var success = _authService.Register(dto);
             if (!success)
             {
-                return BadRequest("Пользователь с таким логином уже существует.");
+                return BadRequest("A user with this login already exists.");
             }
 
-            return Ok("Пользователь успешно зарегистрирован.");
+            return Ok("The user has been successfully registered.");
         }
 
-        // Логин
         [HttpPost("login")]
         public IActionResult Login(LoginDto dto)
         {
-            var user = _authService.GetUser(dto.Username); // новый метод, см. ниже
+            var user = _authService.GetUser(dto.Username);
             if (user == null || !_authService.VerifyPassword(user.PasswordHash, dto.Password))
             {
-                return Unauthorized("Неверный логин или пароль.");
+                return Unauthorized("Incorrect login or password.");
             }
 
             var token = _authService.GenerateJwtToken(user);

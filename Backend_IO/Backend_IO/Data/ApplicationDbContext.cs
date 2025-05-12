@@ -10,8 +10,8 @@ namespace Backend_IO.Data
         {
         }
 
-        public DbSet<User> Users { get; set; } // Таблица пользователей
-        public DbSet<Flight> Flights { get; set; } // Таблица перелётов
-        public DbSet<Booking> Bookings { get; set; } // Таблица бронирований
+        public DbSet<User> Users { get; set; } 
+        public DbSet<Flight> Flights { get; set; } 
+        public DbSet<Booking> Bookings { get; set; } 
     }
 }
