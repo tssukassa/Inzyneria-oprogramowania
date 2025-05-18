@@ -14,6 +14,9 @@ namespace Backend_IO.Models
         public int FlightId { get; set; }
 
         [Required]
+        public string CardNumber { get; set; }
+
+        [Required]
         public DateTime BookingDate { get; set; } 
 
         [Required]
@@ -22,5 +25,6 @@ namespace Backend_IO.Models
         public virtual User User { get; set; }
 
         public virtual Flight Flight { get; set; }
+
     }
 }

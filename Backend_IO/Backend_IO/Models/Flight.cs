@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend_IO.Models
 {
@@ -20,6 +21,7 @@ namespace Backend_IO.Models
         public DateTime ArrivalTime { get; set; } 
 
         [Required]
+        [Column(TypeName = "REAL")]
         public decimal Price { get; set; } 
 
         [Required]

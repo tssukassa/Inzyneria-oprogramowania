@@ -2,6 +2,7 @@
 using Backend_IO.DTO;
 using Backend_IO.Models;
 using Backend_IO.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +13,13 @@ using System.Security.Claims;
 public class BookingController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
+    private readonly BankDbContext _bankContext;
     private readonly AuthService _authService;
 
-    public BookingController(ApplicationDbContext context, AuthService authService)
+    public BookingController(ApplicationDbContext context, BankDbContext bankContext, AuthService authService)
     {
         _context = context;
+        _bankContext = bankContext;
         _authService = authService;
     }
 
@@ -26,26 +29,41 @@ public class BookingController : ControllerBase
     {
         int userId = int.Parse(User.FindFirst("userId")?.Value);
         var user = _context.Users.FirstOrDefault(u => u.Id == userId);
-
         if (user == null)
             return Unauthorized("User no exists.");
 
         var flight = _context.Flights.SingleOrDefault(f => f.Id == bookingDto.FlightId);
         if (flight == null)
-        {
             return BadRequest("Flight with this ID was not found.");
-        }
+
+        var card = _bankContext.BankCards.FirstOrDefault(c =>
+        c.CardNumber == bookingDto.CardNumber &&
+        c.CVV2 == bookingDto.CVV2 &&
+        c.ExpirationDate.Date == bookingDto.ExpirationDate.Date);
+
+        if (card == null)
+            return BadRequest("Bank card not found or invalid.");
+
+        if (card.Balance < flight.Price)
+            return BadRequest("Insufficient funds.");
+
 
         var booking = new Booking
         {
             UserId = userId,
             FlightId = bookingDto.FlightId,
             BookingDate = DateTime.Now,  
-            Status = "Pending" 
+            Status = "Pending",
+            CardNumber = bookingDto.CardNumber
         };
 
         _context.Bookings.Add(booking);
+
         _context.SaveChanges();
+
+        card.Balance -= flight.Price;
+
+        _bankContext.SaveChanges();
 
         return Ok("The order has been successfully created.");
     }
@@ -76,7 +94,8 @@ public class BookingController : ControllerBase
             To = b.Flight.Destination,
             Departure = b.Flight.DepartureTime,
             Arrival = b.Flight.ArrivalTime,
-            Price = b.Flight.Price,
+            b.CardNumber,
+            Price = b.Flight.Price
         }).ToList();
 
         return Ok(result);
@@ -124,16 +143,16 @@ public class BookingController : ControllerBase
             To = b.Flight.Destination,
             Departure = b.Flight.DepartureTime,
             Arrival = b.Flight.ArrivalTime,
+            //b.CardNumber,
             Price = b.Flight.Price
         }).ToList();
 
         return Ok(results);
     }
 
-
     [Authorize]
     [HttpPost("cancel-booking/{bookingId}")]
-    public IActionResult CancelBookingByUser(int bookingId)
+    public IActionResult CancelBookingByUser(int bookingId, [FromBody] CancelBookingRequestDto? cardInfo)
     {
         int userId = int.Parse(User.FindFirst("userId")?.Value);
         var user = _context.Users.FirstOrDefault(u => u.Id == userId);
@@ -142,15 +161,41 @@ public class BookingController : ControllerBase
             return Unauthorized("User no exists.");
 
         var booking = _context.Bookings
+            .Include(b => b.Flight)
             .FirstOrDefault(b => b.Id == bookingId && b.UserId == userId);
 
         if (booking == null)
             return NotFound("Booking not found or does not belong to the user.");
 
-        booking.Status = "Cancelled";
-        _context.SaveChanges();
+        if (booking.Status == "Cancelled")
+            return BadRequest("Booking is already cancelled.");
 
-        return Ok("Booking cancelled successfully.");
+        BankCard? refundCard = null;
+
+        if (cardInfo != null)
+        {
+            refundCard = _bankContext.BankCards.FirstOrDefault(c =>
+                c.CardNumber == cardInfo.CardNumber &&
+                c.CVV2 == cardInfo.CVV2 &&
+                c.ExpirationDate.Date == cardInfo.ExpirationDate.Date);
+        }
+        else
+        {
+            refundCard = _bankContext.BankCards.FirstOrDefault(c => c.CardNumber == booking.CardNumber);
+        }
+
+        if (refundCard == null)
+            return BadRequest("Valid refund card information is required.");
+
+        decimal refundAmount = booking.Flight.Price * 0.9m;
+        refundCard.Balance += refundAmount;
+
+        booking.Status = "Cancelled";
+
+        _context.SaveChanges();
+        _bankContext.SaveChanges();
+
+        return Ok($"Booking cancelled. Refund of {refundAmount} has been processed.");
     }
 
     [Authorize(Roles = "Employee")]
@@ -163,15 +208,31 @@ public class BookingController : ControllerBase
         if (user == null)
             return Unauthorized("User no exists.");
 
-        var booking = _context.Bookings.FirstOrDefault(b => b.Id == bookingId);
+        var booking = _context.Bookings
+            .Include(b => b.Flight)
+            .FirstOrDefault(b => b.Id == bookingId);
 
         if (booking == null)
             return NotFound("Booking not found.");
 
-        booking.Status = "Cancelled";
-        _context.SaveChanges();
+        if (booking.Status == "Cancelled")
+            return BadRequest("Booking is already cancelled.");
 
-        return Ok("Booking cancelled by employee.");
+        var refundCard = _bankContext.BankCards.FirstOrDefault(c => c.CardNumber == booking.CardNumber);
+
+        if (refundCard == null)
+            return BadRequest("Refund card not found in bank database.");
+
+        decimal refundAmount = booking.Flight.Price;
+        refundCard.Balance += refundAmount;
+
+        booking.Status = "Cancelled";
+
+        _context.SaveChanges();
+        _bankContext.SaveChanges();
+
+        return Ok($"Booking cancelled by employee. Refund of {refundAmount} has been processed.");
+
     }
 
     [Authorize(Roles = "Employee,Partner")]
@@ -185,6 +246,7 @@ public class BookingController : ControllerBase
             return Unauthorized("User no exists.");
 
         var bookings = _context.Bookings
+            .Include(b => b.Flight)
             .Where(b => b.FlightId == flightId && b.Status != "Cancelled")
             .ToList();
 
@@ -193,12 +255,24 @@ public class BookingController : ControllerBase
 
         foreach (var booking in bookings)
         {
+
+            var refundCard = _bankContext.BankCards
+                .FirstOrDefault(c => c.CardNumber == booking.CardNumber);
+
+            if (refundCard != null)
+            {
+                decimal refundAmount = booking.Flight.Price;
+                refundCard.Balance += refundAmount;
+            }
+
             booking.Status = "Cancelled";
         }
 
         _context.SaveChanges();
+        _bankContext.SaveChanges();
 
-        return Ok("All bookings for the flight have been cancelled.");
+        return Ok("All bookings for the flight have been cancelled and refunds processed.");
+
     }
 
     [Authorize(Roles = "Employee,Partner")]
@@ -223,7 +297,8 @@ public class BookingController : ControllerBase
 
         foreach (var booking in bookings)
         {
-            booking.Status = newStatus;
+            if (booking.Status != "Cancelled")
+                booking.Status = newStatus;
         }
 
         _context.SaveChanges();

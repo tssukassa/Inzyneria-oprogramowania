@@ -8,7 +8,11 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlite("Data Source=aviationcompany.db"));
+    options.UseSqlite("Data Source=aviationcompany.db"));
+
+builder.Services.AddDbContext<BankDbContext>(options =>
+    options.UseSqlite("Data Source=bank.db"));
+
 
 builder.Services.AddScoped<AuthService>();  
 

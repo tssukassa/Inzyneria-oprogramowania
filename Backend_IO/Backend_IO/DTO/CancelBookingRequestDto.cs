@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Backend_IO.DTO
+﻿namespace Backend_IO.DTO
 {
-    public class BookingDto
+    public class CancelBookingRequestDto
     {
-        public int FlightId { get; set; }
         public string CardNumber { get; set; }
         public string CVV2 { get; set; }
         public DateTime ExpirationDate { get; set; }

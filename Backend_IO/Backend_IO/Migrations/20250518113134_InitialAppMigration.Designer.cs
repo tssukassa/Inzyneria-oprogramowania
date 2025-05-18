@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_IO.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250506114536_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250518113134_InitialAppMigration")]
+    partial class InitialAppMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,10 @@ namespace Backend_IO.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("BookingDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("FlightId")
@@ -73,7 +77,7 @@ namespace Backend_IO.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

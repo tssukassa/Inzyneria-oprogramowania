@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend_IO.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialAppMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,7 @@ namespace Backend_IO.Migrations
                     Destination = table.Column<string>(type: "TEXT", nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Price = table.Column<decimal>(type: "REAL", nullable: false),
                     FlightNumber = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -56,6 +56,7 @@ namespace Backend_IO.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     FlightId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CardNumber = table.Column<string>(type: "TEXT", nullable: false),
                     BookingDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Status = table.Column<string>(type: "TEXT", nullable: false)
                 },

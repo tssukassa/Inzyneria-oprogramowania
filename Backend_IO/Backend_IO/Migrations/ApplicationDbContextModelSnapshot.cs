@@ -26,6 +26,10 @@ namespace Backend_IO.Migrations
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("FlightId")
                         .HasColumnType("INTEGER");
 
@@ -70,7 +74,7 @@ namespace Backend_IO.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

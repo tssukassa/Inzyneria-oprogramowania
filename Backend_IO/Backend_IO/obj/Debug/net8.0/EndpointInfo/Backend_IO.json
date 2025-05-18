@@ -171,6 +171,25 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelBookingRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelBookingRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelBookingRequestDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -476,14 +495,41 @@
   "components": {
     "schemas": {
       "BookingDto": {
-        "required": [
-          "flightId"
-        ],
         "type": "object",
         "properties": {
           "flightId": {
             "type": "integer",
             "format": "int32"
+          },
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "cvV2": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CancelBookingRequestDto": {
+        "type": "object",
+        "properties": {
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "cvV2": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -577,7 +623,7 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "Введите токен в формате: Bearer {your token}",
+        "description": "Enter the token in the following format: Bearer {your token}",
         "name": "Authorization",
         "in": "header"
       }

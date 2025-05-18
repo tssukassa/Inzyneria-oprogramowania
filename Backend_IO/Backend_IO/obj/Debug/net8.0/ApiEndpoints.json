@@ -59,6 +59,11 @@
         "Name": "bookingId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "cardInfo",
+        "Type": "Backend_IO.DTO.CancelBookingRequestDto",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
