@@ -6,6 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend_IO.Controllers
 {
+
+    /*
+     * FlightController
+     *
+     * Handles all operations related to flight management including:
+     * - Creating flights (restricted to Employees and Partners)
+     * - Deleting flights (only if no active bookings exist)
+     * - Searching for available flights based on filters
+     *
+     * Authorization:
+     * - Creating and deleting flights requires Employee or Partner role
+     * - Searching for flights is publicly accessible
+     */
     [Route("api/[controller]")]
     [ApiController]
     public class FlightController : ControllerBase
@@ -17,6 +30,26 @@ namespace Backend_IO.Controllers
             _context = context;
         }
 
+        /*
+         * POST: /api/flight/create
+         *
+         * Creates a new flight in the system.
+         * Only available to users with "Employee" or "Partner" roles.
+         *
+         * Request Body:
+         * - FlightCreateDto with fields:
+         *   - FlightNumber (string)
+         *   - Origin (string)
+         *   - Destination (string)
+         *   - DepartureTime (DateTime)
+         *   - ArrivalTime (DateTime)
+         *   - Price (decimal)
+         *
+         * Returns:
+         * - 200 OK if flight is successfully created
+         * - 400 BadRequest if input is invalid
+         * - 401 Unauthorized if user is not authenticated or role not allowed
+         */
         [HttpPost("create")]
         [Authorize(Roles = "Employee,Partner")]
         public IActionResult CreateFlight([FromBody] FlightCreateDto dto)
@@ -46,6 +79,21 @@ namespace Backend_IO.Controllers
             return Ok("Flight added successfully.");
         }
 
+        /*
+        * DELETE: /api/flight/delete-flight/{flightId}
+        *
+        * Deletes a flight by ID.
+        * Only allowed if there are no active (non-cancelled, non-completed) bookings.
+        *
+        * Path Parameter:
+        * - flightId (int): ID of the flight to delete
+        *
+        * Returns:
+        * - 200 OK if flight is deleted
+        * - 400 BadRequest if there are active bookings
+        * - 404 NotFound if flight does not exist
+        * - 401 Unauthorized if user is not authenticated
+        */
         [Authorize(Roles = "Partner,Employee")]
         [HttpDelete("delete-flight/{flightId}")]
         public IActionResult DeleteFlight(int flightId)
@@ -78,6 +126,28 @@ namespace Backend_IO.Controllers
             return Ok("Flight deleted successfully.");
         }
 
+        /*
+        * GET: /api/flight/search-flights
+        *
+        * Searches flights based on optional filters:
+        * - Flight number
+        * - Origin
+        * - Destination
+        * - Departure date
+        * - Arrival date
+        * - Exact price
+        *
+        * Query Parameters (optional):
+        * - flightNumber (string)
+        * - origin (string)
+        * - destination (string)
+        * - departureDate (DateTime)
+        * - arrivalDate (DateTime)
+        * - price (decimal)
+        *
+        * Returns:
+        * - 200 OK with matching flight list
+        */
         [HttpGet("search-flights")]
         public IActionResult SearchFlights(
         string? flightNumber,

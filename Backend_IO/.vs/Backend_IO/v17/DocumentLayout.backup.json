@@ -1,70 +1,78 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Inzyneria-oprogramowania\\Backend_IO\\",
+  "WorkspaceRootPath": "C:\\Backend_IO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\dto\\flightcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\flightcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\models\\bankcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\bankcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\dto\\cancelbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\cancelbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\flightcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\data\\bankdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\data\\bankdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\dto\\flightcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\flightcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\dto\\cancelbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\cancelbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\dto\\bookingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\backend_io\\backend_io\\models\\bankcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\bankcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,21 +82,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Program.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Program.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Program.cs",
               "RelativeToolTip": "Backend_IO\\Program.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAUwDAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAgwHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T15:24:22.862Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -96,193 +103,208 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Booking.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Booking.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Models\\Booking.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Booking.cs",
-              "RelativeToolTip": "Backend_IO\\Models\\Booking.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T11:28:27.25Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Models\\User.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\User.cs",
-              "RelativeToolTip": "Backend_IO\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T11:28:06.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Flight.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Flight.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Models\\Flight.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Flight.cs",
-              "RelativeToolTip": "Backend_IO\\Models\\Flight.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAgwBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T11:14:06.657Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T11:34:00.558Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BookingController.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\BookingController.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs",
-              "RelativeToolTip": "Backend_IO\\Controllers\\BookingController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAwEEAAAAIAAAAAAAAAA==",
+              "Title": "PartnerController.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\PartnerController.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\PartnerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T12:08:06.365Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CancelBookingRequestDto.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\CancelBookingRequestDto.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\DTO\\CancelBookingRequestDto.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\CancelBookingRequestDto.cs",
-              "RelativeToolTip": "Backend_IO\\DTO\\CancelBookingRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T10:37:35.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Backend_IO\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwCYAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T06:50:01.047Z",
+              "WhenOpened": "2025-05-19T11:29:14.26Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "FlightController.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\FlightController.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Controllers\\FlightController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\FlightController.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\FlightController.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Controllers\\FlightController.cs",
               "RelativeToolTip": "Backend_IO\\Controllers\\FlightController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T14:59:16.068Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FlightCreateDto.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\FlightCreateDto.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\DTO\\FlightCreateDto.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\FlightCreateDto.cs",
-              "RelativeToolTip": "Backend_IO\\DTO\\FlightCreateDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T10:46:38.025Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T11:27:11.305Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "BankCard.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\BankCard.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Models\\BankCard.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\BankCard.cs",
-              "RelativeToolTip": "Backend_IO\\Models\\BankCard.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAjAAAAAAAAAA==",
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAYwFMAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T11:30:49.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T11:12:09.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\BookingController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:17:32.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Services\\AuthService.cs",
+              "RelativeToolTip": "Backend_IO\\Services\\AuthService.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAA3wFkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:17:36.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BankDbContext.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Data\\BankDbContext.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Data\\BankDbContext.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Data\\BankDbContext.cs",
+              "RelativeToolTip": "Backend_IO\\Data\\BankDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T11:04:18.907Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Services\\AuthService.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Services\\AuthService.cs",
-              "RelativeToolTip": "Backend_IO\\Services\\AuthService.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAUwG0AAAAyAAAAAAAAAA==",
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Backend_IO\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T10:44:30.872Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T11:02:55.146Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "LoginDto.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\LoginDto.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\DTO\\LoginDto.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\LoginDto.cs",
-              "RelativeToolTip": "Backend_IO\\DTO\\LoginDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "RegisterDto.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\DTO\\RegisterDto.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\DTO\\RegisterDto.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\DTO\\RegisterDto.cs",
+              "RelativeToolTip": "Backend_IO\\DTO\\RegisterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T10:46:32.95Z"
+              "WhenOpened": "2025-05-19T11:01:31.871Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\DTO\\LoginDto.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\DTO\\LoginDto.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\DTO\\LoginDto.cs",
+              "RelativeToolTip": "Backend_IO\\DTO\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T11:00:18.757Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "RegisterDto.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\RegisterDto.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\DTO\\RegisterDto.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\RegisterDto.cs",
-              "RelativeToolTip": "Backend_IO\\DTO\\RegisterDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
+              "Title": "FlightCreateDto.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\DTO\\FlightCreateDto.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\DTO\\FlightCreateDto.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\DTO\\FlightCreateDto.cs",
+              "RelativeToolTip": "Backend_IO\\DTO\\FlightCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T10:46:28.887Z"
+              "WhenOpened": "2025-05-19T10:56:46.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CancelBookingRequestDto.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\DTO\\CancelBookingRequestDto.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\DTO\\CancelBookingRequestDto.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\DTO\\CancelBookingRequestDto.cs",
+              "RelativeToolTip": "Backend_IO\\DTO\\CancelBookingRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:54:54.791Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Backend_IO\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
+              "Title": "BookingDto.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\DTO\\BookingDto.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\DTO\\BookingDto.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\DTO\\BookingDto.cs",
+              "RelativeToolTip": "Backend_IO\\DTO\\BookingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T10:47:14.787Z"
+              "WhenOpened": "2025-05-19T10:51:29.897Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Backend_IO\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAA9wDcAAAAvAAAAAAAAAA==",
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Models\\User.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Models\\User.cs",
+              "RelativeToolTip": "Backend_IO\\Models\\User.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAiwDIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T10:36:47.329Z"
+              "WhenOpened": "2025-05-19T10:47:04.443Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "PartnerController.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
-              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\PartnerController.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
-              "RelativeToolTip": "Backend_IO\\Controllers\\PartnerController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwDIAAAAAAAAAAAAAAA==",
+              "Title": "Flight.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Models\\Flight.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Models\\Flight.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Models\\Flight.cs",
+              "RelativeToolTip": "Backend_IO\\Models\\Flight.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwC8AAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T06:50:03.66Z"
+              "WhenOpened": "2025-05-19T10:42:14.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Models\\Booking.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Models\\Booking.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Models\\Booking.cs",
+              "RelativeToolTip": "Backend_IO\\Models\\Booking.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAcwC4AAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:39:39.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "BankCard.cs",
+              "DocumentMoniker": "C:\\Backend_IO\\Backend_IO\\Models\\BankCard.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Models\\BankCard.cs",
+              "ToolTip": "C:\\Backend_IO\\Backend_IO\\Models\\BankCard.cs",
+              "RelativeToolTip": "Backend_IO\\Models\\BankCard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T10:35:29.035Z"
             }
           ]
         }

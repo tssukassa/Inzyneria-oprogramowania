@@ -2,12 +2,19 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Security.Claims;
 
 namespace Backend_IO.Controllers
 {
+
+    /*
+     * UserController
+     * 
+     * This controller provides endpoints related to user information retrieval and account management.
+     * 
+     * Authorization:
+     * - Most endpoints require the user to be authenticated.
+     * - Certain endpoints require the user to have the "Employee" role.
+     */
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -19,6 +26,24 @@ namespace Backend_IO.Controllers
             _context = context;
         }
 
+        /*
+          * GET: /api/user/me
+          * 
+          * Retrieves information about the currently authenticated user.
+          * 
+          * Authorization:
+          * - Requires authentication.
+          * 
+          * Returns:
+          * - 200 OK with user details:
+          *   - Id
+          *   - Username
+          *   - Role
+          *   - Email
+          *   - FirstName
+          *   - LastName
+          * - 401 Unauthorized if user no longer exists or not authenticated.
+          */
         [Authorize]
         [HttpGet("me")]
         public IActionResult GetMyInfo()
@@ -41,6 +66,22 @@ namespace Backend_IO.Controllers
         }
 
 
+        /*
+         * GET: /api/user/user/by-username/{username}
+         * 
+         * Retrieves information about a user identified by their username.
+         * 
+         * Authorization:
+         * - Requires user to have "Employee" role.
+         * 
+         * Parameters:
+         * - username: string - username of the user to retrieve.
+         * 
+         * Returns:
+         * - 200 OK with user details (Id, Username, Role, Email, FirstName, LastName).
+         * - 401 Unauthorized if the requesting employee does not exist or is not authenticated.
+         * - 404 Not Found if the target user does not exist.
+         */
         [Authorize(Roles = "Employee")]
         [HttpGet("user/by-username/{username}")]
         public IActionResult GetUserInfoByUsername(string username)
@@ -66,6 +107,22 @@ namespace Backend_IO.Controllers
             });
         }
 
+        /*
+         * DELETE: /api/user/delete-account
+         * 
+         * Deletes the account of the currently authenticated user.
+         * 
+         * Authorization:
+         * - Requires authentication.
+         * 
+         * Conditions:
+         * - The user cannot have any active bookings (bookings with status other than "Completed" or "Cancelled").
+         * 
+         * Returns:
+         * - 200 OK if account deleted successfully.
+         * - 400 BadRequest if active bookings prevent deletion.
+         * - 401 Unauthorized if the user no longer exists.
+         */
         [Authorize]
         [HttpDelete("delete-account")]
         public IActionResult DeleteAccount()
@@ -94,6 +151,26 @@ namespace Backend_IO.Controllers
         }
 
 
+        /*
+         * DELETE: /api/user/delete-account/{userId}
+         * 
+         * Deletes the account of a user identified by their userId.
+         * 
+         * Authorization:
+         * - Requires user to have "Employee" role.
+         * 
+         * Conditions:
+         * - The user to be deleted cannot have any active bookings (bookings with status other than "Completed" or "Cancelled").
+         * 
+         * Parameters:
+         * - userId: int - ID of the user to delete.
+         * 
+         * Returns:
+         * - 200 OK if account deleted successfully.
+         * - 400 BadRequest if active bookings prevent deletion.
+         * - 401 Unauthorized if the requesting employee does not exist or is not authenticated.
+         * - 404 Not Found if the target user does not exist.
+         */
         [Authorize(Roles = "Employee")]
         [HttpDelete("delete-account/{userId}")]
         public IActionResult DeleteAccountById(int userId)
@@ -127,6 +204,18 @@ namespace Backend_IO.Controllers
             return Ok("Account deleted successfully.");
         }
 
+        /*
+         * GET: /api/user/all-users
+         * 
+         * Retrieves a list of all users with selected details.
+         * 
+         * Authorization:
+         * - Requires user to have "Employee" role.
+         * 
+         * Returns:
+         * - 200 OK with list of users (Id, Username, Email, Role, FirstName, LastName, DateOfBirth).
+         * - 401 Unauthorized if the requesting employee does not exist or is not authenticated.
+         */
         [HttpGet("all-users")]
         [Authorize(Roles = "Employee")]
         public IActionResult AllUsers()

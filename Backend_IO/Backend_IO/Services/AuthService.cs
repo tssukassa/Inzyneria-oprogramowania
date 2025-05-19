@@ -11,6 +11,17 @@ using Backend_IO.DTO;
 
 namespace Backend_IO.Services
 {
+    /*
+     * AuthService
+     * 
+     * This service handles user authentication, including:
+     * - Password hashing and verification
+     * - User registration and login
+     * - JWT token generation for authenticated sessions
+     * 
+     * It interacts with the ApplicationDbContext to store and retrieve user data.
+     */
+
     public class AuthService
     {
         private readonly ApplicationDbContext _context;
@@ -20,14 +31,28 @@ namespace Backend_IO.Services
             _context = context;
         }
 
+        /*
+         * HashPassword
+         * 
+         * Generates a salted hash of the given plaintext password using PBKDF2.
+         * 
+         * Parameters:
+         * - string password: The plaintext password to hash.
+         * 
+         * Returns:
+         * - A string combining the salt and hash, separated by a period.
+         */
         public string HashPassword(string password)
         {
             byte[] salt = new byte[16];
+
+            // Generate a cryptographically secure random salt
             using (var rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(salt);
             }
 
+            // Hash the password with the salt using PBKDF2
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
                 salt: salt,
@@ -38,6 +63,18 @@ namespace Backend_IO.Services
             return $"{Convert.ToBase64String(salt)}.{hashed}";
         }
 
+        /*
+        * VerifyPassword
+        * 
+        * Verifies if the provided password matches the stored hashed password.
+        * 
+        * Parameters:
+        * - string hashedPassword: The stored salt+hash format password.
+        * - string password: The plaintext password to verify.
+        * 
+        * Returns:
+        * - True if the password is correct, false otherwise.
+        */
         public bool VerifyPassword(string hashedPassword, string password)
         {
             var parts = hashedPassword.Split('.');
@@ -54,6 +91,18 @@ namespace Backend_IO.Services
             return hash == hashToCheck;
         }
 
+        /*
+         * Register
+         * 
+         * Registers a new user if the username is not already taken.
+         * Assigns role based on the RoleKey provided in the registration data.
+         * 
+         * Parameters:
+         * - RegisterDto dto: Registration data containing user credentials and profile.
+         * 
+         * Returns:
+         * - True if registration is successful, false if the user already exists.
+         */
         public bool Register(RegisterDto dto)
         {
             var existingUser = _context.Users.SingleOrDefault(u => u.Username == dto.Username);
@@ -62,6 +111,7 @@ namespace Backend_IO.Services
                 return false; 
             }
 
+            // Determine role based on role key
             string role = dto.RoleKey switch
             {
                 "worker123" => "Employee",
@@ -88,6 +138,18 @@ namespace Backend_IO.Services
             return true;
         }
 
+        /*
+        * Login
+        * 
+        * Validates user credentials.
+        * 
+        * Parameters:
+        * - string username: The user's username.
+        * - string password: The user's plaintext password.
+        * 
+        * Returns:
+        * - True if login is successful, false otherwise.
+        */
         public bool Login(string username, string password)
         {
             var user = _context.Users.SingleOrDefault(u => u.Username == username);
@@ -99,6 +161,18 @@ namespace Backend_IO.Services
             return VerifyPassword(user.PasswordHash, password);
         }
 
+        /*
+         * GenerateJwtToken
+         * 
+         * Creates a JWT token for the authenticated user.
+         * Token contains claims for username, role, and user ID.
+         * 
+         * Parameters:
+         * - User user: The authenticated user object.
+         * 
+         * Returns:
+         * - A signed JWT token as a string.
+         */
         public string GenerateJwtToken(User user)
         {
             var jwtSettings = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("Jwt");
@@ -123,6 +197,17 @@ namespace Backend_IO.Services
             return tokenHandler.WriteToken(token);
         }
 
+        /*
+         * GetUser
+         * 
+         * Retrieves a user by their username.
+         * 
+         * Parameters:
+         * - string username: The username to search for.
+         * 
+         * Returns:
+         * - The User object if found, otherwise null.
+         */
         public User GetUser(string username)
         {
             return _context.Users.SingleOrDefault(u => u.Username == username);

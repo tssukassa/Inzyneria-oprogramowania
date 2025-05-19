@@ -1,28 +1,52 @@
 ﻿using Backend_IO.Data;
 using Backend_IO.DTO;
 using Backend_IO.Models;
-using Backend_IO.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
+
+/*
+ * BookingController
+ * 
+ * Handles all booking-related operations for flights including:
+ * - Creating bookings
+ * - Viewing user's bookings
+ * - Searching bookings (for employees)
+ * - Cancelling bookings (by users and staff)
+ * - Mass cancelling bookings for a flight
+ * - Updating booking status in bulk
+ * 
+ * Authorization:
+ * - Most endpoints require JWT-based authorization
+ * - Some endpoints restricted to Employee or Partner roles
+ */
 [Route("api/[controller]")]
 [ApiController]
 public class BookingController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
     private readonly BankDbContext _bankContext;
-    private readonly AuthService _authService;
 
-    public BookingController(ApplicationDbContext context, BankDbContext bankContext, AuthService authService)
+    public BookingController(ApplicationDbContext context, BankDbContext bankContext)
     {
         _context = context;
         _bankContext = bankContext;
-        _authService = authService;
     }
 
+    /*
+     * POST: /api/booking/create
+     * 
+     * Creates a booking for a flight by an authenticated user.
+     * Validates flight existence, card information, and available balance.
+     * Deducts funds and saves the booking.
+     * 
+     * Request Body: BookingDto
+     * Returns:
+     * - 200 OK if booking is successful
+     * - 400 BadRequest if validation fails
+     * - 401 Unauthorized if user not found
+     */
     [Authorize]
     [HttpPost("create")]
     public IActionResult CreateBooking([FromBody] BookingDto bookingDto)
@@ -68,6 +92,16 @@ public class BookingController : ControllerBase
         return Ok("The order has been successfully created.");
     }
 
+
+    /*
+   * GET: /api/booking/my-bookings
+   * 
+   * Retrieves all bookings made by the currently authenticated user.
+   * 
+   * Returns:
+   * - 200 OK with booking details including flight information
+   * - 401 Unauthorized if user is not found
+   */
     [HttpGet("my-bookings")] 
     [Authorize]
     public IActionResult GetBookings()
@@ -101,6 +135,23 @@ public class BookingController : ControllerBase
         return Ok(result);
     }
 
+
+    /*
+     * GET: /api/booking/search-bookings
+     * 
+     * Searches all bookings based on optional filters (userId, flightId, date, status).
+     * Accessible only by Employees.
+     * 
+     * Query Parameters:
+     * - int? userId
+     * - int? flightId
+     * - DateTime? date
+     * - string? status
+     * 
+     * Returns:
+     * - 200 OK with filtered booking list
+     * - 401 Unauthorized if employee is not found
+     */
     [Authorize(Roles = "Employee")]
     [HttpGet("search-bookings")]
     public IActionResult SearchBookings(
@@ -150,6 +201,23 @@ public class BookingController : ControllerBase
         return Ok(results);
     }
 
+
+    /*
+     * POST: /api/booking/cancel-booking/{bookingId}
+     * 
+     * Allows a user to cancel their own booking.
+     * Refunds 90% of the flight price to the associated bank card.
+     * 
+     * Path Parameter:
+     * - bookingId (int): ID of the booking to cancel
+     * 
+     * Request Body:
+     * - CancelBookingRequestDto (optional): card details for refund
+     * 
+     * Returns:
+     * - 200 OK on successful cancellation
+     * - 400/404 for validation failures
+     */
     [Authorize]
     [HttpPost("cancel-booking/{bookingId}")]
     public IActionResult CancelBookingByUser(int bookingId, [FromBody] CancelBookingRequestDto? cardInfo)
@@ -198,6 +266,15 @@ public class BookingController : ControllerBase
         return Ok($"Booking cancelled. Refund of {refundAmount} has been processed.");
     }
 
+    /*
+     * POST: /api/booking/cancel-booking-admin/{bookingId}
+     * 
+     * Allows an Employee to cancel any booking with a full refund.
+     * 
+     * Returns:
+     * - 200 OK on success
+     * - 400/404 for validation failures
+     */
     [Authorize(Roles = "Employee")]
     [HttpPost("cancel-booking-admin/{bookingId}")]
     public IActionResult CancelBookingByEmployee(int bookingId)
@@ -235,6 +312,16 @@ public class BookingController : ControllerBase
 
     }
 
+    /*
+     * POST: /api/booking/cancel-flight-bookings/{flightId}
+     * 
+     * Allows Employees or Partners to cancel all active bookings for a flight.
+     * Issues full refunds.
+     * 
+     * Returns:
+     * - 200 OK if successful
+     * - 404 if no active bookings found
+     */
     [Authorize(Roles = "Employee,Partner")]
     [HttpPost("cancel-flight-bookings/{flightId}")]
     public IActionResult CancelAllBookingsByFlight(int flightId)
@@ -275,6 +362,19 @@ public class BookingController : ControllerBase
 
     }
 
+    /*
+     * POST: /api/booking/update-flight-bookings-status/{flightId}
+     * 
+     * Updates the status of all bookings for a given flight.
+     * Can be used for mass-updating bookings (e.g., mark all as "Confirmed").
+     * 
+     * Request Body:
+     * - string newStatus: new status to apply
+     * 
+     * Returns:
+     * - 200 OK if successful
+     * - 400/404 on validation failure
+     */
     [Authorize(Roles = "Employee,Partner")]
     [HttpPost("update-flight-bookings-status/{flightId}")]
     public IActionResult UpdateFlightBookingsStatus(int flightId, [FromBody] string newStatus)
