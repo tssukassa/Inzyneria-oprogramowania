@@ -29,6 +29,15 @@ builder.Services.AddDbContext<BankDbContext>(options =>
 
 // Register AuthService for dependency injection (scoped lifetime)
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 // Add controllers support
 builder.Services.AddControllers();
@@ -103,6 +112,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAll");
 // Add authentication and authorization middleware to the request pipeline
 app.UseAuthentication();
 app.UseAuthorization();
