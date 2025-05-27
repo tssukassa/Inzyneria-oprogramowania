@@ -108,7 +108,7 @@ namespace Backend_IO.Services
             var existingUser = _context.Users.SingleOrDefault(u => u.Username == dto.Username);
             if (existingUser != null)
             {
-                return false; 
+                return false;
             }
 
             // Determine role based on role key
@@ -116,7 +116,7 @@ namespace Backend_IO.Services
             {
                 "worker123" => "Employee",
                 "partner321" => "Partner",
-                _ => "Client" 
+                _ => "Client"
             };
 
             string hashedPassword = HashPassword(dto.Password);
@@ -155,7 +155,7 @@ namespace Backend_IO.Services
             var user = _context.Users.SingleOrDefault(u => u.Username == username);
             if (user == null)
             {
-                return false; 
+                return false;
             }
 
             return VerifyPassword(user.PasswordHash, password);
@@ -185,7 +185,7 @@ namespace Backend_IO.Services
                 {
             new Claim(ClaimTypes.Name, user.Username),
             new Claim(ClaimTypes.Role, user.Role),
-            new Claim("userId", user.Id.ToString()) 
+            new Claim("userId", user.Id.ToString())
         }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 Issuer = jwtSettings["Issuer"],
@@ -216,3 +216,5 @@ namespace Backend_IO.Services
     }
 
 }
+
+
