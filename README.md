@@ -16,4 +16,6 @@ dodanie testow frontend
 dodanie dokumentacji frontend
 
 
-dodanie readmy dokumentacji
+dodanie readmy dokumentacji  
+
+**Autorzy:** Dmytro Mahaliuk i 
