@@ -1,17 +1,12 @@
 # Inzyneria-oprogramowania
 
-Backend: C# (Visual Studio)
+**Backend:** C# (Visual Studio)
+**Baza danych:** SQLite (DB Browser for SQLite)
+**Frontend:** JavaScript
 
-Baza danych: SQLite (DB Browser for SQLite)
-
-Frontend: JavaScript
-
-**Plan:**
-> Zaimplementować backend/ BD
-
-dodanie testow backend
-
-dodanie dokumentacji backend
+>**Wymagania**
+Visual Studio Community 2022 v17.13.4 (lub nowsza)
+.NET 8 SDK
 
 Stworzyć frontend (rozpocząć od prostej strony logowania, a następnie przejść do stron klienta/pracownika/partnera)
 
