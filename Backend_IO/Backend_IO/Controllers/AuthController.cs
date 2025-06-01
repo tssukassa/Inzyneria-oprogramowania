@@ -54,7 +54,8 @@ namespace Backend_IO.Controllers
             }
 
             // Registration succeeded
-            return Ok("The user has been successfully registered.");
+            //return Ok("The user has been successfully registered.");
+            return Ok(true);
         }
 
         /*

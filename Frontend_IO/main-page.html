@@ -12,10 +12,12 @@
   <div class="top-links">
     <a href="#">Help</a>
 
-    <!-- логин заменяемым блоком -->
     <span id="loginArea">
       <a href="login">Log in</a>
     </span>
+	<span id="registerArea">
+	  <a href="register">Register</a>
+	</span>	
 
     <div class="menu-icon" id="menuToggle">
       <div class="bar"></div>
@@ -40,6 +42,37 @@
       <button type="submit">Log in</button>
       <a href="#" class="create">Create Account</a>
       <p id="result"></p>
+    </form>
+  </div>
+</div>
+<div class="modal-overlay" id="registerModal">
+  <div class="register-container">
+    <form id="registerForm" class="register-box">
+      <span class="close-button" id="closeRegister">✖</span>
+
+      <input type="text" id="regUsername" placeholder="username" required />
+	  <input type="text" id="regFirstName" placeholder="first name" required />
+	  <input type="text" id="regLastName" placeholder="last name" required />
+      <input type="password" id="regPassword" placeholder="password" required />
+      <input type="password" id="regConfirmPassword" placeholder="confirm password" required />
+      <input type="email" id="regEmail" placeholder="email" required />
+	  <input type="text" id="regRoleKey" placeholder="role key (optional)" />
+	  <input type="date" id="regDob" placeholder="Date of birth" required />
+
+      <label class="terms">
+        <input type="checkbox" required />
+        By creating an account, you agree to our Terms of Service and Privacy Policy.
+      </label>
+
+      <label class="remember">
+        <input type="checkbox" id="keepLoggedIn" />
+        Keep me logged in
+      </label>
+
+      <button type="submit">Create Account</button>
+      <p id="registerResult"></p>
+
+      <a href="#" id="goToLogin" class="login-link">Log in</a>
     </form>
   </div>
 </div>
@@ -175,17 +208,16 @@
       if (response.ok) {
         const data = await response.json();
 
-        // Заменяем "Log in" на иконку
         const loginArea = document.getElementById('loginArea');
         loginArea.innerHTML = `
           <img src="user-icon.png" alt="User" style="width: 24px; height: 24px; border-radius: 50%; cursor: pointer;" title="Your profile">
         `;
 
-        // Закрываем модальное окно
         modal.style.display = "none";
+		const registerArea = document.getElementById('registerArea');
+        if (registerArea) registerArea.remove();
 
-        // Обновляем страницу, если нужно
-        // location.reload(); // если нужно перезагрузить страницу
+        // location.reload();
 
         result.textContent = '';
       } else {
@@ -199,6 +231,90 @@
     }
   });
 </script>
+
+<script>
+  const registerLink = document.querySelector('.top-links a[href="register"]');
+  const registerModal = document.getElementById('registerModal');
+  const closeRegisterBtn = document.getElementById('closeRegister');
+
+  if (registerLink) {
+    registerLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      registerModal.style.display = 'flex';
+      document.querySelector("#registerForm").style.display = "block";
+    });
+  }
+
+  window.addEventListener('click', function(e) {
+    if (e.target === registerModal) {
+      registerModal.style.display = 'none';
+    }
+  });
+
+  //zamkniencie na x
+  closeRegisterBtn.addEventListener("click", () => {
+    registerModal.style.display = "none";
+  });
+
+  document.getElementById('registerForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const dto = {
+      username: document.getElementById("regUsername").value,
+      password: document.getElementById("regPassword").value,
+      firstName: document.getElementById("regFirstName").value,
+      lastName: document.getElementById("regLastName").value,
+      email: document.getElementById("regEmail").value,
+      dateOfBirth: document.getElementById("regDob").value,
+      roleKey: document.getElementById("regRoleKey").value
+    };
+
+    const resultEl = document.getElementById("registerResult");
+
+    try {
+      const response = await fetch("http://localhost:5077/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dto)
+      });
+
+      const isSuccess = await response.json();
+
+      if (response.ok && isSuccess === true) {
+        //usuwa login register
+        const registerArea = document.getElementById('registerArea');
+        const loginArea = document.getElementById('loginArea');
+        if (registerArea) registerArea.remove();
+        if (loginArea) loginArea.remove();
+		
+		//dodaje user-icon
+        const topLinks = document.querySelector('.top-links');
+        const userIcon = document.createElement('img');
+        userIcon.src = "user-icon.png";
+        userIcon.alt = "User";
+        userIcon.style.width = "24px";
+        userIcon.style.height = "24px";
+        userIcon.style.borderRadius = "50%";
+        userIcon.style.cursor = "pointer";
+        userIcon.title = "Your profile";
+        topLinks.appendChild(userIcon);
+
+        registerModal.style.display = "none";
+        resultEl.textContent = '';
+      } else {
+        resultEl.textContent = "Taki username już istnieje";
+        resultEl.style.color = "red";
+      }
+
+    } catch (error) {
+      console.error("Ошибка запроса:", error);
+      resultEl.textContent = "Błąd połączenia z serwerem";
+      resultEl.style.color = "red";
+    }
+  });
+</script>
+
+
 
 
 </body>
