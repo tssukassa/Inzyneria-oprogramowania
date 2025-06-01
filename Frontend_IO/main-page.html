@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flight Search</title>
+  <link rel="stylesheet" href="main-page.css">
+</head>
+<body>
+  <header class="topbar">
+  <div class="logo">✈</div>
+
+  <div class="top-links">
+    <a href="#">Help</a>
+
+    <!-- логин заменяемым блоком -->
+    <span id="loginArea">
+      <a href="login">Log in</a>
+    </span>
+
+    <div class="menu-icon" id="menuToggle">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+</header>
+  
+  <div class="modal-overlay" id="loginModal">
+  <div class="login-container">
+    <form id="loginForm" class="login-box">
+      <span class="close-button" id="closeLogin">✖</span>
+      <input type="text" id="username" placeholder="username" required />
+      <input type="password" id="password" placeholder="password" required />
+
+      <div class="options">
+        <label><input type="checkbox" /> Keep me logged in</label>
+        <a href="#" class="forgot">Forgot Password?</a>
+      </div>
+
+      <button type="submit">Log in</button>
+      <a href="#" class="create">Create Account</a>
+      <p id="result"></p>
+    </form>
+  </div>
+</div>
+
+  <div class="search-container">
+  <div class="search-box">
+    <label for="from">From:</label>
+    <input type="text" id="from" placeholder="City or airport">
+
+    <label for="to">To:</label>
+    <input type="text" id="to" placeholder="City or airport">
+
+    <button class="search-button" id="searchBtn">Search</button>
+  </div>
+
+  <div class="extra-options" id="extra-options">
+    <div class="row">
+      <label>Departure date: <input type="date" id="departureDate" /></label>
+      <label>Return date: <input type="date" id="arrivalDate" /></label>
+    </div>
+    <div class="row">
+      <label>Price: <input type="number" min="0" id="price" /></label>
+    </div>
+    <div class="row checkbox-group">
+      <label><input type="checkbox" id="oneWay" /> One way</label>
+      <label><input type="checkbox" id="returnTrip" /> Return trip</label>
+    </div>
+  </div>
+
+  <div id="flightResults" style="margin: 20px; color: white;"></div>
+</div>
+
+  <script>
+    const searchInputs = document.querySelectorAll('.search-box input');
+    const extraOptions = document.getElementById('extra-options');
+    let shown = false;
+
+    searchInputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        if (!shown) {
+          extraOptions.style.display = 'flex';
+          shown = true;
+        }
+      });
+    });
+  </script>
+  
+  <script>
+  document.getElementById("searchBtn").addEventListener("click", async () => {
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const departureDate = document.getElementById("departureDate").value;
+  const arrivalDate = document.getElementById("arrivalDate").value;
+  const price = document.getElementById("price").value;
+
+  const params = new URLSearchParams();
+
+  if (from) params.append("origin", from);
+  if (to) params.append("destination", to);
+  if (departureDate) params.append("departureDate", departureDate);
+  if (arrivalDate) params.append("arrivalDate", arrivalDate);
+  if (price) params.append("price", price);
+
+  try {
+    const response = await fetch(`http://localhost:5077/api/flight/search-flights?${params.toString()}`);
+    const data = await response.json();
+
+    const resultContainer = document.getElementById("flightResults");
+    resultContainer.innerHTML = "";
+
+    if (data.length === 0) {
+      resultContainer.textContent = "No flights found.";
+      return;
+    }
+
+    data.forEach(flight => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <strong>${flight.flightNumber}</strong>:
+        ${flight.origin} → ${flight.destination}<br>
+        Departure: ${new Date(flight.departureTime).toLocaleString()}<br>
+        Arrival: ${new Date(flight.arrivalTime).toLocaleString()}<br>
+        Price: $${flight.price.toFixed(2)}
+        <hr>
+      `;
+      resultContainer.appendChild(div);
+    });
+
+  } catch (error) {
+    console.error("Error fetching flights:", error);
+    document.getElementById("flightResults").textContent = "Error connecting to server.";
+  }
+});
+  </script>
+  
+  <script>
+  const loginLink = document.querySelector('.top-links a[href="login"]');
+  const modal = document.getElementById('loginModal');
+  const closeBtn = document.querySelector(".close-button");
+
+  if (loginLink) {
+    loginLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      modal.style.display = 'flex';
+      document.querySelector(".login-box").style.display = "block";
+    });
+  }
+
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const result = document.getElementById('result');
+
+    try {
+      const response = await fetch('http://localhost:5077/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // Заменяем "Log in" на иконку
+        const loginArea = document.getElementById('loginArea');
+        loginArea.innerHTML = `
+          <img src="user-icon.png" alt="User" style="width: 24px; height: 24px; border-radius: 50%; cursor: pointer;" title="Your profile">
+        `;
+
+        // Закрываем модальное окно
+        modal.style.display = "none";
+
+        // Обновляем страницу, если нужно
+        // location.reload(); // если нужно перезагрузить страницу
+
+        result.textContent = '';
+      } else {
+        result.textContent = 'Błąd logowania. Sprawdź login i hasło.';
+        result.style.color = 'red';
+      }
+    } catch (error) {
+      console.error("Błąd żądania:", error);
+      result.textContent = 'Błąd połączenia z serwerem';
+      result.style.color = 'red';
+    }
+  });
+</script>
+
+
+</body>
+</html>

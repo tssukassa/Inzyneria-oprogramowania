@@ -23,7 +23,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     }
   } catch (error) {
     console.error("Błąd żądania:", error);
-    document.getElementById('result').textContent = 'Błąd połączenia z serwerem:';// + error
+    document.getElementById('result').textContent = 'Błąd połączenia z serwerem';
     document.getElementById('result').style.color = 'red';
   }
 });

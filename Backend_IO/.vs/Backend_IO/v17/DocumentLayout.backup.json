@@ -1,17 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Inzyneria-oprogramowania\\Backend_IO\\",
+  "WorkspaceRootPath": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6A79F9BA-2656-453E-AADD-7D3D932FC90B}|Backend_IO.Tests\\Backend_IO.Tests.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io.tests\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\users\\tssuk\\inzyneria-oprogramowania\\backend_io\\backend_io\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\models\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A79F9BA-2656-453E-AADD-7D3D932FC90B}|Backend_IO.Tests\\Backend_IO.Tests.csproj|c:\\users\\tssuk\\inzyneria-oprogramowania\\backend_io\\backend_io.tests\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6A79F9BA-2656-453E-AADD-7D3D932FC90B}|Backend_IO.Tests\\Backend_IO.Tests.csproj|solutionrelative:backend_io.tests\\backendtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\users\\tssuk\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\inzyneria-oprogramowania\\backend_io\\backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\users\\tssuk\\inzyneria-oprogramowania\\backend_io\\backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,20 +26,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Program.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
+              "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
               "RelativeToolTip": "Backend_IO\\Program.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAgwHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T15:24:22.862Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Flight.cs",
+              "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Flight.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Models\\Flight.cs",
+              "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Flight.cs",
+              "RelativeToolTip": "Backend_IO\\Models\\Flight.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T12:52:10.429Z",
               "EditorCaption": ""
             },
             {
@@ -44,11 +60,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BackendTest.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO.Tests\\BackendTest.cs",
+              "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO.Tests\\BackendTest.cs",
               "RelativeDocumentMoniker": "Backend_IO.Tests\\BackendTest.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO.Tests\\BackendTest.cs",
+              "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO.Tests\\BackendTest.cs",
               "RelativeToolTip": "Backend_IO.Tests\\BackendTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -57,16 +73,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
+              "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
               "RelativeToolTip": "Backend_IO\\Controllers\\UserController.cs",
               "ViewState": "AgIAAN8AAAAAAAAAAAAqwPIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T09:42:46.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-27T09:42:46.539Z"
             }
           ]
         }

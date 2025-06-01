@@ -1,0 +1,214 @@
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #001d4a;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #001d4a;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    .logo {
+      font-size: 24px;
+      color: white;
+    }
+
+    .top-links a {
+      margin-left: 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .top-links a:hover {
+      text-decoration: underline;
+    }
+	
+	.menu-icon {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: space-between;
+	  width: 20px;
+	  height: 16px;
+	  margin-left: 15px;
+	  cursor: pointer;
+	}
+
+	.menu-icon .bar {
+	  height: 3px;
+	  background-color: white;
+	  border-radius: 2px;
+	}
+
+    .search-container {
+      max-width: 550px;
+      margin: 20px auto;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+      gap: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .search-box label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #001d4a;
+    }
+
+    .search-box input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .search-button {
+      background: #001d4a;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 3px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .search-button:hover {
+      background-color: #003580;
+    }
+
+    .extra-options {
+      background: white;
+      color: #001d4a;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .extra-options .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .extra-options input[type="date"],
+    .extra-options input[type="number"] {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+	
+	.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-box {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 30px 40px;
+  border-radius: 5px;
+  width: 300px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #001d4a;
+  border-radius: 3px;
+  color: #001d4a;
+}
+
+.login-box input::placeholder {
+  color: #001d4a;
+  opacity: 1;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background-color: #001d4a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-box button:hover {
+  background-color: #003580;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.options .forgot {
+  text-decoration: none;
+  color: #001d4a;
+}
+
+.create {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #001d4a;
+  text-decoration: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+}
