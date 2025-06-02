@@ -3,139 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <title>Flight Search</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #001d4a;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #001d4a;
-      padding: 10px 20px;
-      color: white;
-    }
-
-    .logo {
-      font-size: 24px;
-      color: white;
-    }
-
-    .search-box {
-      display: flex;
-      align-items: center;
-      background: white;
-      padding: 6px 10px;
-      border-radius: 5px;
-      gap: 10px;
-    }
-
-    .search-box label {
-      font-size: 13px;
-      font-weight: bold;
-      color: #001d4a;
-    }
-
-    .search-box input {
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-
-    .search-button {
-      background: #001d4a;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 3px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .search-button:hover {
-      background-color: #003580;
-    }
-
-    .top-links a {
-      margin-left: 15px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .top-links a:hover {
-      text-decoration: underline;
-    }
-
-    .extra-options {
-      background: white;
-      color: #001d4a;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin: 10px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .extra-options .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .extra-options input[type="date"],
-    .extra-options input[type="number"] {
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-
-    .checkbox-group label {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="main-page.css">
 </head>
 <body>
   <header class="topbar">
-    <div class="logo">✈</div>
+  <div class="logo">✈</div>
 
-    <div class="search-box">
-      <label for="from">From:</label>
-      <input type="text" id="from" placeholder="City or airport">
+  <div class="top-links">
+    <a href="#">Help</a>
 
-      <label for="to">To:</label>
-      <input type="text" id="to" placeholder="City or airport">
+    <span id="loginArea">
+      <a href="login">Log in</a>
+    </span>
+	<span id="registerArea">
+	  <a href="register">Register</a>
+	</span>	
 
-      <button class="search-button">Search</button>
+    <div class="menu-icon" id="menuToggle">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
     </div>
+  </div>
+</header>
+  
+  <div class="modal-overlay" id="loginModal">
+  <div class="login-container">
+    <form id="loginForm" class="login-box">
+      <span class="close-button" id="closeLogin">✖</span>
+      <input type="text" id="username" placeholder="username" required />
+      <input type="password" id="password" placeholder="password" required />
 
-    <div class="top-links">
-      <a href="#">Help</a>
-      <a href="#">Log in</a>
-    </div>
-  </header>
+      <div class="options">
+        <label><input type="checkbox" /> Keep me logged in</label>
+        <a href="#" class="forgot">Forgot Password?</a>
+      </div>
+
+      <button type="submit">Log in</button>
+      <a href="#" class="create">Create Account</a>
+      <p id="result"></p>
+    </form>
+  </div>
+</div>
+<div class="modal-overlay" id="registerModal">
+  <div class="register-container">
+    <form id="registerForm" class="register-box">
+      <span class="close-button" id="closeRegister">✖</span>
+
+      <input type="text" id="regUsername" placeholder="username" required />
+	  <input type="text" id="regFirstName" placeholder="first name" required />
+	  <input type="text" id="regLastName" placeholder="last name" required />
+      <input type="password" id="regPassword" placeholder="password" required />
+      <input type="password" id="regConfirmPassword" placeholder="confirm password" required />
+    <input type="text" id="regEmail" placeholder="email (optional)" />
+	  <input type="text" id="regRoleKey" placeholder="role key (optional)" />
+	  <input type="date" id="regDob" placeholder="Date of birth" required />
+
+      <label class="terms">
+        <input type="checkbox" required />
+        By creating an account, you agree to our Terms of Service and Privacy Policy.
+      </label>
+
+      <label class="remember">
+        <input type="checkbox" id="keepLoggedIn" />
+        Keep me logged in
+      </label>
+
+      <button type="submit">Create Account</button>
+      <p id="registerResult"></p>
+
+      <a href="#" id="goToLogin" class="login-link">Log in</a>
+    </form>
+  </div>
+</div>
+
+  <div class="search-container">
+  <div class="search-box">
+    <label for="from">From:</label>
+    <input type="text" id="from" placeholder="City or airport">
+
+    <label for="to">To:</label>
+    <input type="text" id="to" placeholder="City or airport">
+
+    <button class="search-button" id="searchBtn">Search</button>
+  </div>
 
   <div class="extra-options" id="extra-options">
     <div class="row">
-      <label>Departure date: <input type="date" /></label>
-      <label>Return date: <input type="date" /></label>
+      <label>Departure date: <input type="date" id="departureDate" /></label>
+      <label>Return date: <input type="date" id="arrivalDate" /></label>
     </div>
     <div class="row">
-      <label>Price from: <input type="number" min="0" /></label>
-      <label>to: <input type="number" min="0" /></label>
+      <label>Price: <input type="number" min="0" id="price" /></label>
     </div>
     <div class="row checkbox-group">
-      <label><input type="checkbox" /> One way</label>
-      <label><input type="checkbox" /> Return trip</label>
+      <label><input type="checkbox" id="oneWay" /> One way</label>
+      <label><input type="checkbox" id="returnTrip" /> Return trip</label>
     </div>
   </div>
+
+  <div id="flightResults" style="margin: 20px; color: white;"></div>
+</div>
 
   <script>
     const searchInputs = document.querySelectorAll('.search-box input');
@@ -151,5 +119,203 @@
       });
     });
   </script>
+  
+  <script>
+  document.getElementById("searchBtn").addEventListener("click", async () => {
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const departureDate = document.getElementById("departureDate").value;
+  const arrivalDate = document.getElementById("arrivalDate").value;
+  const price = document.getElementById("price").value;
+
+  const params = new URLSearchParams();
+
+  if (from) params.append("origin", from);
+  if (to) params.append("destination", to);
+  if (departureDate) params.append("departureDate", departureDate);
+  if (arrivalDate) params.append("arrivalDate", arrivalDate);
+  if (price) params.append("price", price);
+
+  try {
+    const response = await fetch(`http://localhost:5077/api/flight/search-flights?${params.toString()}`);
+    const data = await response.json();
+
+    const resultContainer = document.getElementById("flightResults");
+    resultContainer.innerHTML = "";
+
+    if (data.length === 0) {
+      resultContainer.textContent = "No flights found.";
+      return;
+    }
+
+    data.forEach(flight => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <strong>${flight.flightNumber}</strong>:
+        ${flight.origin} → ${flight.destination}<br>
+        Departure: ${new Date(flight.departureTime).toLocaleString()}<br>
+        Arrival: ${new Date(flight.arrivalTime).toLocaleString()}<br>
+        Price: $${flight.price.toFixed(2)}
+        <hr>
+      `;
+      resultContainer.appendChild(div);
+    });
+
+  } catch (error) {
+    console.error("Error fetching flights:", error);
+    document.getElementById("flightResults").textContent = "Error connecting to server.";
+  }
+});
+  </script>
+  
+  <script>
+  const loginLink = document.querySelector('.top-links a[href="login"]');
+  const modal = document.getElementById('loginModal');
+  const closeBtn = document.querySelector(".close-button");
+
+  if (loginLink) {
+    loginLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      modal.style.display = 'flex';
+      document.querySelector(".login-box").style.display = "block";
+    });
+  }
+
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const result = document.getElementById('result');
+
+    try {
+      const response = await fetch('http://localhost:5077/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+
+        const loginArea = document.getElementById('loginArea');
+        loginArea.innerHTML = `
+          <img src="user-icon.png" alt="User" style="width: 24px; height: 24px; border-radius: 50%; cursor: pointer;" title="Your profile">
+        `;
+
+        modal.style.display = "none";
+		const registerArea = document.getElementById('registerArea');
+        if (registerArea) registerArea.remove();
+
+        // location.reload();
+
+        result.textContent = '';
+      } else {
+        result.textContent = 'Błąd logowania. Sprawdź login i hasło.';
+        result.style.color = 'red';
+      }
+    } catch (error) {
+      console.error("Błąd żądania:", error);
+      result.textContent = 'Błąd połączenia z serwerem';
+      result.style.color = 'red';
+    }
+  });
+</script>
+
+<script>
+  const registerLink = document.querySelector('.top-links a[href="register"]');
+  const registerModal = document.getElementById('registerModal');
+  const closeRegisterBtn = document.getElementById('closeRegister');
+
+  if (registerLink) {
+    registerLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      registerModal.style.display = 'flex';
+      document.querySelector("#registerForm").style.display = "block";
+    });
+  }
+
+  window.addEventListener('click', function(e) {
+    if (e.target === registerModal) {
+      registerModal.style.display = 'none';
+    }
+  });
+
+  //zamkniencie na x
+  closeRegisterBtn.addEventListener("click", () => {
+    registerModal.style.display = "none";
+  });
+
+  document.getElementById('registerForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const dto = {
+      username: document.getElementById("regUsername").value,
+      password: document.getElementById("regPassword").value,
+      firstName: document.getElementById("regFirstName").value,
+      lastName: document.getElementById("regLastName").value,
+      email: document.getElementById("regEmail").value,
+      dateOfBirth: document.getElementById("regDob").value,
+      roleKey: document.getElementById("regRoleKey").value
+    };
+
+    const resultEl = document.getElementById("registerResult");
+
+    try {
+      const response = await fetch("http://localhost:5077/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dto)
+      });
+
+      const isSuccess = await response.json();
+
+      if (response.ok && isSuccess === true) {
+        //usuwa login register
+        const registerArea = document.getElementById('registerArea');
+        const loginArea = document.getElementById('loginArea');
+        if (registerArea) registerArea.remove();
+        if (loginArea) loginArea.remove();
+		
+		//dodaje user-icon
+        const topLinks = document.querySelector('.top-links');
+        const userIcon = document.createElement('img');
+        userIcon.src = "user-icon.png";
+        userIcon.alt = "User";
+        userIcon.style.width = "24px";
+        userIcon.style.height = "24px";
+        userIcon.style.borderRadius = "50%";
+        userIcon.style.cursor = "pointer";
+        userIcon.title = "Your profile";
+        topLinks.appendChild(userIcon);
+
+        registerModal.style.display = "none";
+        resultEl.textContent = '';
+      } else {
+        resultEl.textContent = "Taki username już istnieje";
+        resultEl.style.color = "red";
+      }
+
+    } catch (error) {
+      console.error("Ошибка запроса:", error);
+      resultEl.textContent = "Błąd połączenia z serwerem";
+      resultEl.style.color = "red";
+    }
+  });
+</script>
+
+
+
+
 </body>
 </html>
