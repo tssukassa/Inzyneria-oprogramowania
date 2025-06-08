@@ -22,8 +22,8 @@ body {
   padding: 20px 30px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
   color: #001d4a;
+  margin-bottom: 20px;
 }
 
 .profile-row {
@@ -99,4 +99,18 @@ body {
 
 .hidden {
   display: none;
+}
+
+.profile-button-extra {
+  width: 100%;
+  padding: 12px;
+  background-color: #001d4a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }

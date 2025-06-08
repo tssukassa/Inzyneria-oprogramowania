@@ -147,30 +147,39 @@ document.addEventListener("DOMContentLoaded", () => {
       // Button 1: Search User
       const searchBtn = document.createElement("button");
       searchBtn.textContent = "Search User";
-      searchBtn.className = "profile-button";
+      searchBtn.className = "profile-button-extra";
       searchBtn.onclick = () => {
         window.location.href = "search-user.html";
       };
       container.appendChild(searchBtn);
 
-      // Button 2: All Users
-      const allUsersBtn = document.createElement("button");
-      allUsersBtn.textContent = "Search Bookings";
-      allUsersBtn.className = "profile-button";
-      allUsersBtn.onclick = () => {
+      // Button 2: Search Bookings
+      const searchBookingBtn = document.createElement("button");
+      searchBookingBtn.textContent = "Search Bookings";
+      searchBookingBtn.className = "profile-button-extra";
+      searchBookingBtn.onclick = () => {
         window.location.href = "search-booking.html";
       };
-      container.appendChild(allUsersBtn);
+      container.appendChild(searchBookingBtn);
 
-      // Button 3: Delete User
-      /*const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "Delete User";
-      deleteBtn.className = "profile-button";
-      deleteBtn.onclick = () => {
-        alert("Delete User clicked! (feature coming soon)");
+      // Button 3: Create Flight
+      const createFlight = document.createElement("button");
+      createFlight.textContent = "Create Flight";
+      createFlight.className = "profile-button-extra";
+      createFlight.onclick = () => {
+        window.location.href = "create-flight.html";
       };
-      container.appendChild(deleteBtn);
-	  */
+      container.appendChild(createFlight);
+	  
+	  // Button 4: Delete Flight
+      const deleteFlight = document.createElement("button");
+      deleteFlight.textContent = "Delete Flight";
+      deleteFlight.className = "profile-button-extra";
+      deleteFlight.onclick = () => {
+        window.location.href = "delete-flight.html";
+      };
+      container.appendChild(deleteFlight);
+	  
     }
   });
 </script>
@@ -195,30 +204,30 @@ document.addEventListener("DOMContentLoaded", () => {
       // Button 1: Search User
       const searchBtn = document.createElement("button");
       searchBtn.textContent = "Booking Stats";
-      searchBtn.className = "profile-button";
+      searchBtn.className = "profile-button-extra";
       searchBtn.onclick = () => {
         window.location.href = "booking-stats.html";
       };
       container.appendChild(searchBtn);
 
-      // Button 2: All Users
-      /*const allUsersBtn = document.createElement("button");
-      allUsersBtn.textContent = "Search Bookings";
-      allUsersBtn.className = "profile-button";
-      allUsersBtn.onclick = () => {
-        window.location.href = "search-booking.html";
+      // Button 2: Create Flight
+      const createFlight = document.createElement("button");
+      createFlight.textContent = "Create Flight";
+      createFlight.className = "profile-button-extra";
+      createFlight.onclick = () => {
+        window.location.href = "create-flight.html";
       };
-      container.appendChild(allUsersBtn);
-
-      // Button 3: Delete User
-      const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "Delete User";
-      deleteBtn.className = "profile-button";
-      deleteBtn.onclick = () => {
-        alert("Delete User clicked! (feature coming soon)");
+      container.appendChild(createFlight);
+	  
+	  // Button 3: Delete Flight
+      const deleteFlight = document.createElement("button");
+      deleteFlight.textContent = "Delete Flight";
+      deleteFlight.className = "profile-button-extra";
+      deleteFlight.onclick = () => {
+        window.location.href = "delete-flight.html";
       };
-      container.appendChild(deleteBtn);
-	  */
+      container.appendChild(deleteFlight);
+	  
     }
   });
 </script>
