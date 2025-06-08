@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Booking Stats</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #001d4a;
+      text-align: center;
+    }
+
+    .stats-container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .summary {
+      margin-bottom: 30px;
+      font-size: 18px;
+      color: #001d4a;
+    }
+
+    .flight-entry {
+      border-bottom: 1px solid #ccc;
+      padding: 20px 0;
+    }
+
+    .flight-entry:last-child {
+      border-bottom: none;
+    }
+
+    .flight-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #001d4a;
+      margin-bottom: 10px;
+    }
+
+    .flight-detail {
+      margin: 3px 0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Booking Statistics</h1>
+  <div class="stats-container" id="statsContainer">
+    Loading...
+  </div>
+
+  <script>
+    async function loadStats() {
+      const token = localStorage.getItem("token");
+      const container = document.getElementById("statsContainer");
+
+      if (!token) {
+        container.innerHTML = "<p style='color:red;'>Musisz być zalogowany jako Partner.</p>";
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:5077/api/partner/booking-stats", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        if (!res.ok) {
+          const err = await res.text();
+          container.innerHTML = `<p style="color:red;">Error: ${err}</p>`;
+          return;
+        }
+
+        const data = await res.json();
+        container.innerHTML = `
+          <div class="summary">
+            <p><strong>Total Bookings:</strong> ${data.totalBookings}</p>
+            <p><strong>Total Revenue:</strong> $${data.totalRevenue.toFixed(2)}</p>
+          </div>
+        `;
+
+        data.byFlight.forEach(f => {
+          const entry = document.createElement("div");
+          entry.className = "flight-entry";
+          entry.innerHTML = `
+            <div class="flight-title">Flight ID: ${f.flightId}</div>
+            <div class="flight-detail"><strong>Bookings:</strong> ${f.count}</div>
+            <div class="flight-detail"><strong>Revenue:</strong> $${f.totalRevenue.toFixed(2)}</div>
+          `;
+          container.appendChild(entry);
+        });
+
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = "<p style='color:red;'>Błąd połączenia z serwerem.</p>";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", loadStats);
+  </script>
+</body>
+</html>

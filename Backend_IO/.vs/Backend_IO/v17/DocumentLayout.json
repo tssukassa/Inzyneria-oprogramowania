@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\users\\tssuk\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\partnercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|c:\\users\\tssuk\\inzyneria-oprogramowania\\backend_io\\backend_io\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA141B4-92DE-44E6-B296-A5F8651F2249}|Backend_IO\\Backend_IO.csproj|solutionrelative:backend_io\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -50,11 +54,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Program.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Program.cs",
@@ -71,7 +75,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "PartnerController.cs",
+              "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
+              "RelativeDocumentMoniker": "Backend_IO\\Controllers\\PartnerController.cs",
+              "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\PartnerController.cs",
+              "RelativeToolTip": "Backend_IO\\Controllers\\PartnerController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T22:26:49.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "FlightController.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\FlightController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\FlightController.cs",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BookingController.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\BookingController.cs",
@@ -96,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Services\\AuthService.cs",
@@ -108,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LoginDto.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\LoginDto.cs",
               "RelativeDocumentMoniker": "Backend_IO\\DTO\\LoginDto.cs",
@@ -120,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\DTO\\RegisterDto.cs",
               "RelativeDocumentMoniker": "Backend_IO\\DTO\\RegisterDto.cs",
@@ -132,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\AuthController.cs",
@@ -144,7 +161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Flight.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Models\\Flight.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Models\\Flight.cs",
@@ -156,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "BackendTest.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO.Tests\\BackendTest.cs",
               "RelativeDocumentMoniker": "Backend_IO.Tests\\BackendTest.cs",
@@ -168,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\UserController.cs",
@@ -176,8 +193,7 @@
               "RelativeToolTip": "Backend_IO\\Controllers\\UserController.cs",
               "ViewState": "AgIAAL0AAAAAAAAAAAAowMwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T09:42:46.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-27T09:42:46.539Z"
             }
           ]
         }

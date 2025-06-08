@@ -32,6 +32,7 @@
 </div>
   </div>
   <div id="employeeActions"></div>
+  <div id="partnerActions"></div>
 </div>
 
   <script>
@@ -136,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // heading
       const heading = document.createElement("p");
-      heading.textContent = "Actions for employees and partners";
+      heading.textContent = "Actions for employees";
       heading.style.fontWeight = "bold";
       heading.style.marginTop = "20px";
       heading.style.marginBottom = "10px";
@@ -174,7 +175,53 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 </script>
 
+<script>
+  //buttons for partner
+  document.addEventListener("DOMContentLoaded", () => {
+    const role = getRoleFromToken();
 
+    if (role === "Partner") {
+      const container = document.getElementById("partnerActions");
+
+      // heading
+      const heading = document.createElement("p");
+      heading.textContent = "Actions for partners";
+      heading.style.fontWeight = "bold";
+      heading.style.marginTop = "20px";
+      heading.style.marginBottom = "10px";
+      heading.style.color = "#001d4a";
+      container.appendChild(heading);
+
+      // Button 1: Search User
+      const searchBtn = document.createElement("button");
+      searchBtn.textContent = "Booking Stats";
+      searchBtn.className = "profile-button";
+      searchBtn.onclick = () => {
+        window.location.href = "booking-stats.html";
+      };
+      container.appendChild(searchBtn);
+
+      // Button 2: All Users
+      /*const allUsersBtn = document.createElement("button");
+      allUsersBtn.textContent = "Search Bookings";
+      allUsersBtn.className = "profile-button";
+      allUsersBtn.onclick = () => {
+        window.location.href = "search-booking.html";
+      };
+      container.appendChild(allUsersBtn);
+
+      // Button 3: Delete User
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete User";
+      deleteBtn.className = "profile-button";
+      deleteBtn.onclick = () => {
+        alert("Delete User clicked! (feature coming soon)");
+      };
+      container.appendChild(deleteBtn);
+	  */
+    }
+  });
+</script>
 
 
 </body>
