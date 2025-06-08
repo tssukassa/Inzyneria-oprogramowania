@@ -53,9 +53,12 @@ namespace Backend_IO.Controllers
                 return BadRequest("A user with this login already exists.");
             }
 
+            var user = _authService.GetUser(dto.Username);
+            var token = _authService.GenerateJwtToken(user);
+            return Ok(new { token });
             // Registration succeeded
             //return Ok("The user has been successfully registered.");
-            return Ok(true);
+            //return Ok(true);
         }
 
         /*

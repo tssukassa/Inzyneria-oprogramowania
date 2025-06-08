@@ -5210,23 +5210,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dmytro\\.nuget\\packages\\": {},
+    "C:\\Users\\tssuk\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
+      "projectUniqueName": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
       "projectName": "Backend_IO",
-      "projectPath": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
-      "packagesPath": "C:\\Users\\Dmytro\\.nuget\\packages\\",
-      "outputPath": "C:\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\obj\\",
+      "projectPath": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Backend_IO.csproj",
+      "packagesPath": "C:\\Users\\tssuk\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Dmytro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tssuk\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5235,7 +5235,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5254,7 +5253,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -5306,7 +5305,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -5315,7 +5314,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Pakiet „System.IdentityModel.Tokens.Jwt” 7.0.2 ma znane umiarkowana luki w zabezpieczeniach o ważności, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "message": "У пакета \"System.IdentityModel.Tokens.Jwt\" 7.0.2 есть известная уязвимость https://github.com/advisories/GHSA-59j7-ghrg-fj52 (уровень серьезности: средний)",
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         "net8.0"
