@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>My Profile</title>
   <link rel="stylesheet" href="profile.css">
-  
+  <script src="token-utils.js"></script>
+
 </head>
 <body>
 
@@ -13,17 +14,19 @@
   </div>
 
   <div class="profile-actions">
-    <button class="profile-button">Booking History</button>
+    <button class="profile-button" id="bookingHistoryBtn">Booking History</button>
     <button class="profile-button">Favorites & Watchlist</button>
     <button class="profile-button">Security Settings</button>
     <button class="profile-button">My Coupons & Discounts</button>
     <button class="profile-button">My Travel Stats</button>
-    <button class="profile-button">Log out</button>
+    <button class="profile-button" id="logoutBtn">Log out</button>
     <button class="profile-button danger">Delete Account</button>
   </div>
+  <div id="employeeActions"></div>
 </div>
 
   <script>
+  //my profile
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -54,6 +57,73 @@
       });
     }
   </script>
+  
+  <script>
+  //go to bookings
+  document.getElementById("bookingHistoryBtn").addEventListener("click", () => {
+    window.location.href = "bookings.html";
+  });
+</script>
+  
+  <script>
+  //log out
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("token");      // Удаляем токен
+    window.location.href = "main-page.html"; // Перенаправляем
+  });
+</script>
+
+
+  
+<script>
+  //buttons for employee
+  document.addEventListener("DOMContentLoaded", () => {
+    const role = getRoleFromToken();
+
+    if (role === "Employee") {
+      const container = document.getElementById("employeeActions");
+
+      // heading
+      const heading = document.createElement("p");
+      heading.textContent = "Actions for employees";
+      heading.style.fontWeight = "bold";
+      heading.style.marginTop = "20px";
+      heading.style.marginBottom = "10px";
+      heading.style.color = "#001d4a";
+      container.appendChild(heading);
+
+      // Button 1: Search User
+      const searchBtn = document.createElement("button");
+      searchBtn.textContent = "Search User";
+      searchBtn.className = "profile-button";
+      searchBtn.onclick = () => {
+        alert("Search User clicked! (feature coming soon)");
+      };
+      container.appendChild(searchBtn);
+
+      // Button 2: All Users
+      const allUsersBtn = document.createElement("button");
+      allUsersBtn.textContent = "All Users";
+      allUsersBtn.className = "profile-button";
+      allUsersBtn.onclick = () => {
+        alert("All Users clicked! (feature coming soon)");
+      };
+      container.appendChild(allUsersBtn);
+
+      // Button 3: Delete User
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete User";
+      deleteBtn.className = "profile-button";
+      deleteBtn.onclick = () => {
+        alert("Delete User clicked! (feature coming soon)");
+      };
+      container.appendChild(deleteBtn);
+    }
+  });
+</script>
+
+
+
 
 </body>
 </html>

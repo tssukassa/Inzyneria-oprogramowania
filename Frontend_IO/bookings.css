@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.bookings-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bookings-container h1 {
+  margin-bottom: 20px;
+  color: #001d4a;
+}
+
+.bookings-list .booking-entry {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.booking-entry h3 {
+  margin: 0 0 8px;
+  color: #001d4a;
+}
+
+.booking-entry p {
+  margin: 4px 0;
+  color: #333;
+}

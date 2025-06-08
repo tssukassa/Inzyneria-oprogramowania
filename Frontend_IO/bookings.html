@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Bookings</title>
+  <link rel="stylesheet" href="bookings.css" />
+  <script src="token-utils.js"></script>
+</head>
+<body>
+  <div class="bookings-container">
+    <h1>Your Bookings</h1>
+    <div id="bookingsList" class="bookings-list"></div>
+  </div>
+
+  <script>
+  //show bookings
+    async function loadBookings() {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        document.getElementById("bookingsList").textContent = "Musisz być zalogowany.";
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:5077/api/booking/my-bookings", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        const container = document.getElementById("bookingsList");
+        container.innerHTML = "";
+
+        if (!response.ok) {
+          container.textContent = "Błąd podczas pobierania danych.";
+          return;
+        }
+
+        const data = await response.json();
+
+        if (data.length === 0) {
+          container.textContent = "Brak rezerwacji.";
+          return;
+        }
+
+        data.forEach(b => {
+          const bookingDiv = document.createElement("div");
+          bookingDiv.classList.add("booking-entry");
+          bookingDiv.innerHTML = `
+			<h3>${b.flightNumber}: ${b.from} → ${b.to}</h3>
+			<p><strong>Status:</strong> ${b.status}</p>
+			<p><strong>Booking Date:</strong> ${new Date(b.bookingDate).toLocaleString()}</p>
+			<p><strong>Departure:</strong> ${new Date(b.departure).toLocaleString()}</p>
+			<p><strong>Arrival:</strong> ${new Date(b.arrival).toLocaleString()}</p>
+			<p><strong>Card:</strong> **** **** **** ${b.cardNumber?.slice(-4) || '----'}</p>
+			<p><strong>Price:</strong> $${b.price?.toFixed(2) || '0.00'}</p>
+			`;
+          container.appendChild(bookingDiv);
+        });
+
+      } catch (err) {
+        console.error("Error:", err);
+        document.getElementById("bookingsList").textContent = "Nie udało się pobrać rezerwacji.";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", loadBookings);
+  </script>
+</body>
+</html>
