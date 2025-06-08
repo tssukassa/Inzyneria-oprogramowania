@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Profile</title>
+  <link rel="stylesheet" href="profile.css">
+  
+</head>
+<body>
+
+  <div class="profile-wrapper">
+  <div class="profile-box" id="profileContainer">
+  </div>
+
+  <div class="profile-actions">
+    <button class="profile-button">Booking History</button>
+    <button class="profile-button">Favorites & Watchlist</button>
+    <button class="profile-button">Security Settings</button>
+    <button class="profile-button">My Coupons & Discounts</button>
+    <button class="profile-button">My Travel Stats</button>
+    <button class="profile-button">Log out</button>
+    <button class="profile-button danger">Delete Account</button>
+  </div>
+</div>
+
+  <script>
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      document.getElementById("profileContainer").innerHTML = "<p style='color: red;'>Musisz być zalogowany.</p>";
+    } else {
+      fetch("http://localhost:5077/api/user/me", {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Authorization failed");
+        return res.json();
+      })
+      .then(user => {
+        const box = document.getElementById("profileContainer");
+        box.innerHTML = `
+          <div class="profile-row"><span class="label">Nickname:</span><span class="value">${user.username}</span></div>
+          <div class="profile-row"><span class="label">Name:</span><span class="value">${user.firstName}</span></div>
+          <div class="profile-row"><span class="label">Second Name:</span><span class="value">${user.lastName}</span></div>
+          <div class="profile-row"><span class="label">Email:</span><span class="value">${user.email}</span></div>
+          <div class="profile-row"><span class="label">Role:</span><span class="value">${user.role}</span></div>
+        `;
+      })
+      .catch(err => {
+        document.getElementById("profileContainer").innerHTML = `<p style='color: red;'>Błąd: ${err.message}</p>`;
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -31,10 +31,11 @@
     <img src="user-icon.png" alt="User Icon">
     <span id="menuUsername">Nie zalogowany</span>
   </div>
-  <button>My Profile</button>
+  <button id="profileBtn">My Profile</button>
+  <p id="profileWarning" style="color: red; display: none;"></p>
   <button>My Tickets</button>
   <button>My Discounts & Coupons</button>
-  <button>Log Out</button>
+  <button id="logoutBtn">Log Out</button>
 </div>
 	
   </header>
@@ -498,7 +499,28 @@ document.getElementById("closeBooking").addEventListener("click", () => {
   });
 </script>
 
+<script>
+//log out
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    location.reload();
+  });
+</script>
 
+<script>
+//from main to profile
+  document.getElementById("profileBtn").addEventListener("click", () => {
+    const token = localStorage.getItem("token");
+    const warningEl = document.getElementById("profileWarning");
+
+    if (token) {
+      window.location.href = "profile.html"; // переход на страницу
+    } else {
+      warningEl.textContent = "Musisz być zalogowany";
+      warningEl.style.display = "block";
+    }
+  });
+</script>
 
 
 </body>
