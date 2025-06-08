@@ -15,57 +15,139 @@
 
   <script>
   //show bookings
-    async function loadBookings() {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        document.getElementById("bookingsList").textContent = "Musisz być zalogowany.";
+  async function loadBookings() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      document.getElementById("bookingsList").textContent = "Musisz być zalogowany.";
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5077/api/booking/my-bookings", {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const container = document.getElementById("bookingsList");
+      container.innerHTML = "";
+
+      if (!response.ok) {
+        container.textContent = "Błąd podczas pobierania danych.";
         return;
       }
 
-      try {
-        const response = await fetch("http://localhost:5077/api/booking/my-bookings", {
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
-        });
+      const data = await response.json();
 
-        const container = document.getElementById("bookingsList");
-        container.innerHTML = "";
-
-        if (!response.ok) {
-          container.textContent = "Błąd podczas pobierania danych.";
-          return;
-        }
-
-        const data = await response.json();
-
-        if (data.length === 0) {
-          container.textContent = "Brak rezerwacji.";
-          return;
-        }
-
-        data.forEach(b => {
-          const bookingDiv = document.createElement("div");
-          bookingDiv.classList.add("booking-entry");
-          bookingDiv.innerHTML = `
-			<h3>${b.flightNumber}: ${b.from} → ${b.to}</h3>
-			<p><strong>Status:</strong> ${b.status}</p>
-			<p><strong>Booking Date:</strong> ${new Date(b.bookingDate).toLocaleString()}</p>
-			<p><strong>Departure:</strong> ${new Date(b.departure).toLocaleString()}</p>
-			<p><strong>Arrival:</strong> ${new Date(b.arrival).toLocaleString()}</p>
-			<p><strong>Card:</strong> **** **** **** ${b.cardNumber?.slice(-4) || '----'}</p>
-			<p><strong>Price:</strong> $${b.price?.toFixed(2) || '0.00'}</p>
-			`;
-          container.appendChild(bookingDiv);
-        });
-
-      } catch (err) {
-        console.error("Error:", err);
-        document.getElementById("bookingsList").textContent = "Nie udało się pobrać rezerwacji.";
+      if (data.length === 0) {
+        container.textContent = "Brak rezerwacji.";
+        return;
       }
-    }
 
-    window.addEventListener("DOMContentLoaded", loadBookings);
-  </script>
+      data.forEach(b => {
+        const bookingDiv = document.createElement("div");
+        bookingDiv.classList.add("booking-entry");
+
+        bookingDiv.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h3>${b.flightNumber}: ${b.from} → ${b.to}</h3>
+              <p><strong>Status:</strong> ${b.status}</p>
+              <p><strong>Booking Date:</strong> ${new Date(b.bookingDate).toLocaleString()}</p>
+              <p><strong>Departure:</strong> ${new Date(b.departure).toLocaleString()}</p>
+              <p><strong>Arrival:</strong> ${new Date(b.arrival).toLocaleString()}</p>
+              <p><strong>Card:</strong> **** **** **** ${b.cardNumber?.slice(-4) || '----'}</p>
+              <p><strong>Price:</strong> $${b.price?.toFixed(2) || '0.00'}</p>
+            </div>
+            
+          </div>
+        `;
+
+const cancelBtn = document.createElement("button");
+cancelBtn.textContent = "Cancel Booking";
+cancelBtn.style.backgroundColor = "darkred";
+cancelBtn.style.color = "white";
+cancelBtn.style.border = "none";
+cancelBtn.style.padding = "10px 14px";
+cancelBtn.style.borderRadius = "4px";
+cancelBtn.style.cursor = "pointer";
+cancelBtn.style.marginTop = "10px";
+
+// Обработчик клика по кнопке
+cancelBtn.addEventListener("click", () => {
+  const confirmModal = document.createElement("div");
+  confirmModal.style.position = "fixed";
+  confirmModal.style.top = "0";
+  confirmModal.style.left = "0";
+  confirmModal.style.width = "100%";
+  confirmModal.style.height = "100%";
+  confirmModal.style.backgroundColor = "rgba(0,0,0,0.5)";
+  confirmModal.style.display = "flex";
+  confirmModal.style.justifyContent = "center";
+  confirmModal.style.alignItems = "center";
+  confirmModal.style.zIndex = "9999";
+
+  const box = document.createElement("div");
+  box.style.backgroundColor = "white";
+  box.style.padding = "20px 30px";
+  box.style.borderRadius = "10px";
+  box.style.textAlign = "center";
+  box.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+  box.innerHTML = `
+    <p style="margin-bottom: 20px;">Are you sure you want to cancel this booking?</p>
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <button id="confirmYes" style="padding: 10px 20px; background-color: #c82333; color: white; border: none; border-radius: 6px;">Yes</button>
+      <button id="confirmNo" style="padding: 10px 20px; background-color: #001d4a; color: white; border: none; border-radius: 6px;">No</button>
+    </div>
+  `;
+
+  confirmModal.appendChild(box);
+  document.body.appendChild(confirmModal);
+
+  document.getElementById("confirmNo").addEventListener("click", () => {
+    document.body.removeChild(confirmModal);
+  });
+
+  document.getElementById("confirmYes").addEventListener("click", async () => {
+    try {
+      const res = await fetch(`http://localhost:5077/api/booking/cancel-booking/${b.id}`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: null // Пустое тело, если карта уже сохранена
+      });
+
+      const message = await res.text();
+
+      if (res.ok) {
+        alert("Booking cancelled successfully.");
+        window.location.reload();
+      } else {
+        alert("Error: " + message);
+      }
+    } catch (error) {
+      console.error("Cancel error:", error);
+      alert("Connection error.");
+    } finally {
+      document.body.removeChild(confirmModal);
+    }
+  });
+});
+
+bookingDiv.appendChild(cancelBtn);
+container.appendChild(bookingDiv);
+      });
+
+    } catch (err) {
+      console.error("Error:", err);
+      document.getElementById("bookingsList").textContent = "Nie udało się pobrać rezerwacji.";
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", loadBookings);
+</script>
+
 </body>
 </html>

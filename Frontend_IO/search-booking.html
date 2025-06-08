@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Bookings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #001d4a;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #001d4a;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #003d8d;
+    }
+
+    .booking-result {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #f9f9f9;
+      color: #001d4a;
+    }
+
+    .error {
+      color: red;
+    }
+	
+	
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Search Bookings</h2>
+    <input type="number" id="userIdInput" placeholder="User ID">
+    <input type="number" id="flightIdInput" placeholder="Flight ID">
+    <input type="date" id="dateInput" placeholder="Booking Date">
+    <input type="text" id="statusInput" placeholder="Status (e.g., Pending, Completed)">
+    <button id="searchBookingBtn">Search</button>
+
+    <div id="results"></div>
+  </div>
+
+  <script>
+    function getRoleFromToken() {
+      const token = localStorage.getItem("token");
+      if (!token) return null;
+
+      try {
+        const payloadBase64 = token.split('.')[1];
+        const decodedPayload = JSON.parse(atob(payloadBase64));
+        return decodedPayload.role || null;
+      } catch (error) {
+        console.error("Błąd dekodowania roli:", error);
+        return null;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const role = getRoleFromToken();
+      const token = localStorage.getItem("token");
+
+      if (role !== "Employee") {
+        document.body.innerHTML = "<h3 style='color:red;text-align:center;'>Musisz być zalogowany jako Employee</h3>";
+        return;
+      }
+
+      document.getElementById("searchBookingBtn").addEventListener("click", async () => {
+        const userId = document.getElementById("userIdInput").value.trim();
+        const flightId = document.getElementById("flightIdInput").value.trim();
+        const date = document.getElementById("dateInput").value;
+        const status = document.getElementById("statusInput").value.trim();
+        const results = document.getElementById("results");
+        
+
+        const params = new URLSearchParams();
+        if (userId) params.append("userId", userId);
+        if (flightId) params.append("flightId", flightId);
+        if (date) params.append("date", date);
+        if (status) params.append("status", status);
+
+        try {
+          const response = await fetch(`http://localhost:5077/api/booking/search-bookings?${params.toString()}`, {
+            headers: { "Authorization": `Bearer ${token}` }
+          });
+
+          if (!response.ok) {
+            const text = await response.text();
+            results.innerHTML = `<p class="error">Error: ${text}</p>`;
+            return;
+          }
+
+          const bookings = await response.json();
+          if (bookings.length === 0) {
+            results.innerHTML = "<p>No bookings found.</p>";
+            return;
+          }
+
+          bookings.forEach(b => {
+  const bookingBlock = document.createElement("div");
+  bookingBlock.className = "booking-result";
+  bookingBlock.innerHTML = `
+    <p><strong>Booking ID:</strong> ${b.id}</p>
+    <p><strong>User:</strong> ${b.user}</p>
+    <p><strong>Flight:</strong> ${b.flightNumber} (${b.from} → ${b.to})</p>
+    <p><strong>Status:</strong> ${b.status}</p>
+    <p><strong>Date:</strong> ${new Date(b.bookingDate).toLocaleDateString()}</p>
+    <p><strong>Departure:</strong> ${new Date(b.departure).toLocaleString()}</p>
+    <p><strong>Arrival:</strong> ${new Date(b.arrival).toLocaleString()}</p>
+    <p><strong>Price:</strong> $${b.price.toFixed(2)}</p>
+  `;
+
+  const cancelBtn = document.createElement("button");
+  cancelBtn.textContent = "Cancel Booking";
+  cancelBtn.style.backgroundColor = "darkred";
+  cancelBtn.style.color = "white";
+  cancelBtn.style.border = "none";
+  cancelBtn.style.padding = "8px 12px";
+  cancelBtn.style.borderRadius = "4px";
+  cancelBtn.style.cursor = "pointer";
+  cancelBtn.style.display = "block";
+cancelBtn.style.margin = "10px auto 0 auto";
+cancelBtn.style.width = "100%";
+
+  cancelBtn.addEventListener("click", async () => {
+    const confirm = window.confirm("Are you sure you want to cancel this booking?");
+    if (!confirm) return;
+
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await fetch(`http://localhost:5077/api/booking/cancel-booking-admin/${b.id}`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const msg = await res.text();
+
+      if (res.ok) {
+        alert("Booking successfully cancelled.");
+        window.location.reload();
+      } else {
+        alert("Error: " + msg);
+      }
+    } catch (err) {
+      console.error("Cancel error:", err);
+      alert("Connection error.");
+    }
+  });
+
+  bookingBlock.appendChild(cancelBtn);
+  results.appendChild(bookingBlock);
+});
+
+
+        } catch (err) {
+          console.error("Error:", err);
+          results.innerHTML = "<p class='error'>Error connecting to server.</p>";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

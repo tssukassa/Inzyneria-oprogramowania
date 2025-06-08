@@ -91,8 +91,7 @@
               "RelativeToolTip": "Backend_IO\\Controllers\\BookingController.cs",
               "ViewState": "AgIAANMAAAAAAAAAAAAkwHEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T14:09:19.205Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-08T14:09:19.205Z"
             },
             {
               "$type": "Document",
@@ -104,8 +103,7 @@
               "RelativeToolTip": "Backend_IO\\Services\\AuthService.cs",
               "ViewState": "AgIAAM0AAAAAAAAAAAAuwK4AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T13:38:29.338Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T13:38:29.338Z"
             },
             {
               "$type": "Document",
@@ -141,8 +139,7 @@
               "RelativeToolTip": "Backend_IO\\Controllers\\AuthController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T13:36:04.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T13:36:04.196Z"
             },
             {
               "$type": "Document",
@@ -176,7 +173,7 @@
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\UserController.cs",
               "RelativeToolTip": "Backend_IO\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAN0AAAAAAAAAAAAswPIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAowMwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-27T09:42:46.539Z",
               "EditorCaption": ""

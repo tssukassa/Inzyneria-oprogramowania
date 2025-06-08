@@ -33,7 +33,7 @@
   </div>
   <button id="profileBtn">My Profile</button>
   <p id="profileWarning" style="color: red; display: none;"></p>
-  <button>My Tickets</button>
+  <button id="bookingHistoryBtn">My Tickets</button>
   <button>My Discounts & Coupons</button>
   <button id="logoutBtn">Log Out</button>
 </div>
@@ -126,7 +126,7 @@
       <input type="text" id="cvv2" placeholder="CVV2" required />
       <input type="date" id="expirationDate" required />
 
-      <input type="hidden" id="bookingFlightId" /> <!-- hidden поле для FlightId -->
+      <input type="hidden" id="bookingFlightId" /> 
 
       <button type="submit">Confirm Booking</button>
       <p id="bookingResult"></p>
@@ -139,7 +139,7 @@
 	localStorage.removeItem("token"); //anulowanie tokenu
 	const usernameEl = document.getElementById("menuUsername");
     if (usernameEl) {
-      usernameEl.textContent = "Nie zalogowany"; // обнуление имени пользователя
+      usernameEl.textContent = "Nie zalogowany";
     }
 	});
 	
@@ -514,11 +514,18 @@ document.getElementById("closeBooking").addEventListener("click", () => {
     const warningEl = document.getElementById("profileWarning");
 
     if (token) {
-      window.location.href = "profile.html"; // переход на страницу
+      window.location.href = "profile.html"; 
     } else {
       warningEl.textContent = "Musisz być zalogowany";
       warningEl.style.display = "block";
     }
+  });
+</script>
+
+<script>
+  //go to bookings
+  document.getElementById("bookingHistoryBtn").addEventListener("click", () => {
+    window.location.href = "bookings.html";
   });
 </script>
 

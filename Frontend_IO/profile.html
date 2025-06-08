@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // heading
       const heading = document.createElement("p");
-      heading.textContent = "Actions for employees";
+      heading.textContent = "Actions for employees and partners";
       heading.style.fontWeight = "bold";
       heading.style.marginTop = "20px";
       heading.style.marginBottom = "10px";
@@ -154,21 +154,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Button 2: All Users
       const allUsersBtn = document.createElement("button");
-      allUsersBtn.textContent = "All Users";
+      allUsersBtn.textContent = "Search Bookings";
       allUsersBtn.className = "profile-button";
       allUsersBtn.onclick = () => {
-        alert("All Users clicked! (feature coming soon)");
+        window.location.href = "search-booking.html";
       };
       container.appendChild(allUsersBtn);
 
       // Button 3: Delete User
-      const deleteBtn = document.createElement("button");
+      /*const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Delete User";
       deleteBtn.className = "profile-button";
       deleteBtn.onclick = () => {
         alert("Delete User clicked! (feature coming soon)");
       };
       container.appendChild(deleteBtn);
+	  */
     }
   });
 </script>
