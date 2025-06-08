@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #001d4a;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+	  margin-bottom: 10px;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      background-color: #001d4a;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #003d8d;
+    }
+
+    .user-info {
+      margin-top: 20px;
+      color: #001d4a;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Search User</h2>
+    <input type="text" id="usernameInput" placeholder="Enter username..." />
+    <button id="searchUserBtn">Search</button>
+	<button id="showAllUsersBtn">Show All Users</button>
+	<div id="result" class="user-info"></div>
+	<div id="allUsersResult" class="user-info"></div>
+    
+  </div>
+
+ <script>
+  function getRoleFromToken() {
+    const token = localStorage.getItem("token");
+    if (!token) return null;
+
+    try {
+      const payloadBase64 = token.split('.')[1];
+      const decodedPayload = JSON.parse(atob(payloadBase64));
+      return decodedPayload.role || null;
+    } catch (error) {
+      console.error("Błąd dekodowania roli:", error);
+      return null;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const role = getRoleFromToken();
+    const token = localStorage.getItem("token");
+
+    const resultDiv = document.getElementById("result");
+    const allUsersDiv = document.getElementById("allUsersResult");
+
+    if (role !== "Employee") {
+      document.body.innerHTML = "<h3 style='color:red;text-align:center;'>Musisz być zalogowany jako Employee</h3>";
+      return;
+    }
+
+    // SEARCH USER BY USERNAME
+    document.getElementById("searchUserBtn").addEventListener("click", async () => {
+      const username = document.getElementById("usernameInput").value.trim();
+      resultDiv.innerHTML = "";
+      allUsersDiv.innerHTML = ""; // clear previous all-users list
+
+      if (!username) {
+        resultDiv.innerHTML = "<p class='error'>Please enter a username.</p>";
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:5077/api/user/user/by-username/${username}`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          resultDiv.innerHTML = `<p class='error'>Error: ${errText}</p>`;
+          return;
+        }
+
+        const user = await response.json();
+
+        resultDiv.innerHTML = `
+  <div class="user-block">
+    <p><strong>ID:</strong> ${user.id}</p>
+    <p><strong>Username:</strong> ${user.username}</p>
+    <p><strong>First Name:</strong> ${user.firstName}</p>
+    <p><strong>Last Name:</strong> ${user.lastName}</p>
+    <p><strong>Email:</strong> ${user.email}</p>
+    <p><strong>Role:</strong> ${user.role}</p>
+  </div>
+`;
+
+const deleteBtn = document.createElement("button");
+deleteBtn.textContent = "Delete User";
+deleteBtn.style.backgroundColor = "darkred";
+deleteBtn.style.color = "white";
+deleteBtn.style.border = "none";
+deleteBtn.style.padding = "8px 12px";
+deleteBtn.style.borderRadius = "4px";
+deleteBtn.style.cursor = "pointer";
+deleteBtn.style.marginTop = "8px";
+
+deleteBtn.addEventListener("click", () => {
+  const confirmModal = document.createElement("div");
+  confirmModal.style.position = "fixed";
+  confirmModal.style.top = "0";
+  confirmModal.style.left = "0";
+  confirmModal.style.width = "100%";
+  confirmModal.style.height = "100%";
+  confirmModal.style.backgroundColor = "rgba(0,0,0,0.5)";
+  confirmModal.style.display = "flex";
+  confirmModal.style.justifyContent = "center";
+  confirmModal.style.alignItems = "center";
+  confirmModal.style.zIndex = "9999";
+
+  const box = document.createElement("div");
+  box.style.backgroundColor = "white";
+  box.style.padding = "20px 30px";
+  box.style.borderRadius = "10px";
+  box.style.textAlign = "center";
+  box.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+  box.innerHTML = `
+    <p style="margin-bottom: 20px;">Are you sure you want to delete this user?</p>
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <button id="confirmYes" style="padding: 10px 20px; background-color: #c82333; color: white; border: none; border-radius: 6px;">Yes</button>
+      <button id="confirmNo" style="padding: 10px 20px; background-color: #001d4a; color: white; border: none; border-radius: 6px;">No</button>
+    </div>
+  `;
+
+  confirmModal.appendChild(box);
+  document.body.appendChild(confirmModal);
+
+  document.getElementById("confirmNo").addEventListener("click", () => {
+    document.body.removeChild(confirmModal);
+  });
+
+  document.getElementById("confirmYes").addEventListener("click", async () => {
+    try {
+      const response = await fetch(`http://localhost:5077/api/user/delete-account/${user.id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const result = await response.text();
+
+      if (response.ok) {
+        alert("User deleted successfully.");
+        window.location.reload();
+      } else {
+        alert("Error: " + result);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Connection error.");
+    } finally {
+      document.body.removeChild(confirmModal);
+    }
+  });
+});
+
+resultDiv.appendChild(deleteBtn);
+      } catch (error) {
+        console.error("Error conection:", error);
+        resultDiv.innerHTML = "<p class='error'>Error connecting to server.</p>";
+      }
+    });
+
+    // SHOW ALL USERS
+document.getElementById("showAllUsersBtn").addEventListener("click", async () => {
+  resultDiv.innerHTML = ""; // clear previous single user result
+  allUsersDiv.innerHTML = "";
+
+  try {
+    const response = await fetch("http://localhost:5077/api/user/all-users", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      allUsersDiv.innerHTML = `<p class='error'>Error: ${errText}</p>`;
+      return;
+    }
+
+    const users = await response.json();
+
+    if (users.length === 0) {
+      allUsersDiv.innerHTML = "<p>No users found.</p>";
+      return;
+    }
+
+    users.forEach(user => {
+      const userBlock = document.createElement("div");
+      userBlock.classList.add("user-block");
+
+      userBlock.innerHTML = `
+        <p><strong>ID:</strong> ${user.id}</p>
+        <p><strong>Username:</strong> ${user.username}</p>
+        <p><strong>Name:</strong> ${user.firstName} ${user.lastName}</p>
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Role:</strong> ${user.role}</p>
+        <p><strong>DOB:</strong> ${new Date(user.dateOfBirth).toLocaleDateString()}</p>
+      `;
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete User";
+      deleteBtn.style.backgroundColor = "darkred";
+      deleteBtn.style.color = "white";
+      deleteBtn.style.border = "none";
+      deleteBtn.style.padding = "8px 12px";
+      deleteBtn.style.borderRadius = "4px";
+      deleteBtn.style.cursor = "pointer";
+      deleteBtn.style.marginTop = "8px";
+
+      deleteBtn.addEventListener("click", () => {
+  const confirmModal = document.createElement("div");
+  confirmModal.style.position = "fixed";
+  confirmModal.style.top = "0";
+  confirmModal.style.left = "0";
+  confirmModal.style.width = "100%";
+  confirmModal.style.height = "100%";
+  confirmModal.style.backgroundColor = "rgba(0,0,0,0.5)";
+  confirmModal.style.display = "flex";
+  confirmModal.style.justifyContent = "center";
+  confirmModal.style.alignItems = "center";
+  confirmModal.style.zIndex = "9999";
+
+  const box = document.createElement("div");
+  box.style.backgroundColor = "white";
+  box.style.padding = "20px 30px";
+  box.style.borderRadius = "10px";
+  box.style.textAlign = "center";
+  box.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+  box.innerHTML = `
+    <p style="margin-bottom: 20px;">Are you sure you want to delete this user?</p>
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <button id="confirmYes" style="padding: 10px 20px; background-color: #c82333; color: white; border: none; border-radius: 6px;">Yes</button>
+      <button id="confirmNo" style="padding: 10px 20px; background-color: #001d4a; color: white; border: none; border-radius: 6px;">No</button>
+    </div>
+  `;
+
+  confirmModal.appendChild(box);
+  document.body.appendChild(confirmModal);
+
+  document.getElementById("confirmNo").addEventListener("click", () => {
+    document.body.removeChild(confirmModal);
+  });
+
+  document.getElementById("confirmYes").addEventListener("click", async () => {
+    try {
+      const response = await fetch(`http://localhost:5077/api/user/delete-account/${user.id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const result = await response.text();
+
+      if (response.ok) {
+        alert("User deleted successfully.");
+        window.location.reload();
+      } else {
+        alert("Error: " + result);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Connection error.");
+    } finally {
+      document.body.removeChild(confirmModal);
+    }
+  });
+});
+
+      userBlock.appendChild(deleteBtn);
+      allUsersDiv.appendChild(userBlock);
+    });
+
+  } catch (error) {
+    console.error("Error connection:", error);
+    allUsersDiv.innerHTML = "<p class='error'>Error connecting to server.</p>";
+  }
+});
+  });
+</script>
+</body>
+</html>

@@ -20,7 +20,16 @@
     <button class="profile-button">My Coupons & Discounts</button>
     <button class="profile-button">My Travel Stats</button>
     <button class="profile-button" id="logoutBtn">Log out</button>
-    <button class="profile-button danger">Delete Account</button>
+    <button class="profile-button danger" id="deleteAccountBtn">Delete Account</button>
+	<div id="deleteConfirmModal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <p>Are you sure you want to delete your account?</p>
+    <div class="modal-actions">
+      <button id="confirmDeleteBtn" class="profile-button danger">Yes</button>
+      <button id="cancelDeleteBtn" class="profile-button">No</button>
+    </div>
+  </div>
+</div>
   </div>
   <div id="employeeActions"></div>
 </div>
@@ -73,6 +82,48 @@
   });
 </script>
 
+<script>
+// delete user
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+
+  const deleteBtn = document.getElementById("deleteAccountBtn");
+  const modal = document.getElementById("deleteConfirmModal");
+  const confirmBtn = document.getElementById("confirmDeleteBtn");
+  const cancelBtn = document.getElementById("cancelDeleteBtn");
+
+  deleteBtn?.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+  });
+
+  cancelBtn?.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  confirmBtn?.addEventListener("click", async () => {
+    try {
+      const response = await fetch("http://localhost:5077/api/user/delete-account", {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        localStorage.removeItem("token");
+        window.location.href = "main-page.html";
+      } else {
+        const error = await response.text();
+        alert("Error: " + error);
+      }
+    } catch (err) {
+      alert("Something went wrong.");
+    }
+  });
+});
+</script>
+
+
 
   
 <script>
@@ -97,7 +148,7 @@
       searchBtn.textContent = "Search User";
       searchBtn.className = "profile-button";
       searchBtn.onclick = () => {
-        alert("Search User clicked! (feature coming soon)");
+        window.location.href = "search-user.html";
       };
       container.appendChild(searchBtn);
 
