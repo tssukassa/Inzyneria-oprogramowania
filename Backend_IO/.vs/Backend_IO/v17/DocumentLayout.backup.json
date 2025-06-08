@@ -59,8 +59,7 @@
               "ViewState": "AgIAAFcAAAAAAAAAAAAgwHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T15:24:22.862Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -76,8 +75,7 @@
               "RelativeToolTip": "Backend_IO\\Controllers\\BookingController.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAQwDEAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T14:09:19.205Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-08T14:09:19.205Z"
             },
             {
               "$type": "Document",
@@ -87,7 +85,7 @@
               "RelativeDocumentMoniker": "Backend_IO\\Services\\AuthService.cs",
               "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Services\\AuthService.cs",
               "RelativeToolTip": "Backend_IO\\Services\\AuthService.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAkwGgAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAswGgAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T13:38:29.338Z",
               "EditorCaption": ""
@@ -124,7 +122,7 @@
               "RelativeDocumentMoniker": "Backend_IO\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\tssuk\\Inzyneria-oprogramowania\\Backend_IO\\Backend_IO\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Backend_IO\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAQwD4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAYwF0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T13:36:04.196Z",
               "EditorCaption": ""
@@ -163,8 +161,7 @@
               "RelativeToolTip": "Backend_IO\\Controllers\\UserController.cs",
               "ViewState": "AgIAAHEAAAAAAAAAAAAgwPIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T09:42:46.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-27T09:42:46.539Z"
             }
           ]
         }

@@ -84,6 +84,14 @@ namespace Backend_IO.Controllers
             {
                 return Unauthorized("Incorrect login or password.");
             }
+            if (user == null)
+            {
+                Console.WriteLine($"User {dto.Username} not found");
+            }
+            else if (!_authService.VerifyPassword(user.PasswordHash, dto.Password))
+            {
+                Console.WriteLine($"Password invalid for {dto.Username}");
+            }
 
             // Generate JWT token and return it
             var token = _authService.GenerateJwtToken(user);

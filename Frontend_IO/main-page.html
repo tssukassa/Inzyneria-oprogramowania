@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Flight Search</title>
   <link rel="stylesheet" href="main-page.css">
+  <script src="token-utils.js"></script>
+
 </head>
 <body>
   <header class="topbar">
@@ -24,7 +26,17 @@
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
+	<div id="userMenu" class="user-menu hidden">
+  <div class="user-header">
+    <img src="user-icon.png" alt="User Icon">
+    <span id="menuUsername">Nie zalogowany</span>
   </div>
+  <button>My Profile</button>
+  <button>My Tickets</button>
+  <button>My Discounts & Coupons</button>
+  <button>Log Out</button>
+</div>
+	
   </header>
   
   <div class="modal-overlay" id="loginModal">
@@ -124,7 +136,12 @@
 <script>
 	window.addEventListener("load", () => {
 	localStorage.removeItem("token"); //anulowanie tokenu
+	const usernameEl = document.getElementById("menuUsername");
+    if (usernameEl) {
+      usernameEl.textContent = "Nie zalogowany"; // обнуление имени пользователя
+    }
 	});
+	
 </script>
   <script>
   //rozszerzenie Search-baru
@@ -258,6 +275,11 @@
       if (response.ok) {
         const data = await response.json();
 		localStorage.setItem("token", data.token);
+		const username = getUsernameFromToken();
+		const menuUsernameEl = document.getElementById("menuUsername");
+		if (username && menuUsernameEl) {
+		menuUsernameEl.textContent = username;
+		}
 		
 
         const loginArea = document.getElementById('loginArea');
@@ -332,10 +354,16 @@
       });
 
       if (response.ok) {
-      const data = await response.json(); // ожидаем { token: "..." }
+      const data = await response.json();
+	  
 
       if (data.token) {
         localStorage.setItem("token", data.token);
+		const username = getUsernameFromToken();
+		const menuUsernameEl = document.getElementById("menuUsername");
+		if (username && menuUsernameEl) {
+		menuUsernameEl.textContent = username;
+		}
         const registerArea = document.getElementById('registerArea');
         const loginArea = document.getElementById('loginArea');
         if (registerArea) registerArea.remove();
@@ -453,6 +481,25 @@ document.getElementById("closeBooking").addEventListener("click", () => {
   document.getElementById("bookingModal").style.display = "none";
 });
 </script>
+
+<script>
+//open menu
+  const menuToggle = document.getElementById("menuToggle");
+  const userMenu = document.getElementById("userMenu");
+
+  menuToggle.addEventListener("click", () => {
+    userMenu.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", function(event) {
+    if (!userMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+      userMenu.classList.add("hidden");
+    }
+  });
+</script>
+
+
+
 
 </body>
 </html>
